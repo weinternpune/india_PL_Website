@@ -26,13 +26,13 @@ export const AdminReportsPage: React.FC = () => {
   const cancelledCount = bookings.filter((b) => b.status === 'Cancelled').length;
 
   const weeklyTrend = [
+    { label: 'Sun', bookings: 18, revenue: 5300, completed: 18, cancelled: 0 },
     { label: 'Mon', bookings: 14, revenue: 4200, completed: 13, cancelled: 1 },
     { label: 'Tue', bookings: 19, revenue: 5800, completed: 18, cancelled: 1 },
     { label: 'Wed', bookings: 16, revenue: 4900, completed: 15, cancelled: 0 },
     { label: 'Thu', bookings: 22, revenue: 6800, completed: 21, cancelled: 1 },
     { label: 'Fri', bookings: 25, revenue: 8100, completed: 23, cancelled: 2 },
     { label: 'Sat', bookings: 31, revenue: 9900, completed: 30, cancelled: 1 },
-    { label: 'Sun', bookings: 18, revenue: 5300, completed: 18, cancelled: 0 },
   ];
 
   const maxRevenue = Math.max(...weeklyTrend.map((d) => d.revenue));
@@ -196,13 +196,13 @@ export const AdminReportsPage: React.FC = () => {
           </div>
 
           {/* SVG Area / Line representation */}
-          <div className="pt-6 pb-2">
-            <div className="h-60 flex items-end justify-between gap-4 px-2">
+          <div className="pt-8 pb-2 w-full overflow-hidden">
+            <div className="h-60 w-full grid grid-cols-7 gap-1.5 sm:gap-3 md:gap-4 items-end px-1 sm:px-2">
               {weeklyTrend.map((item, i) => {
                 const heightPct = Math.round((item.revenue / (maxRevenue + 1000)) * 100);
                 return (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-2 group h-full justify-end">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold text-white bg-[#0B2038] px-2 py-1 rounded shadow-md pointer-events-none mb-1">
+                  <div key={i} className="relative flex flex-col items-center gap-2 group h-full justify-end min-w-0">
+                    <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold text-white bg-[#0B2038] px-2 py-1 rounded shadow-md pointer-events-none whitespace-nowrap z-20">
                       ₹{item.revenue.toLocaleString('en-IN')}
                     </div>
                     <div className="w-full max-w-[36px] bg-teal-50 rounded-t-xl h-full flex items-end">
@@ -211,7 +211,7 @@ export const AdminReportsPage: React.FC = () => {
                         className="w-full rounded-t-xl bg-gradient-to-t from-[#009E9B] to-[#00C2BE] group-hover:brightness-110 transition-all duration-500"
                       />
                     </div>
-                    <span className="text-xs font-bold text-[#5B738B]">{item.label}</span>
+                    <span className="text-xs font-bold text-[#5B738B] truncate">{item.label}</span>
                   </div>
                 );
               })}

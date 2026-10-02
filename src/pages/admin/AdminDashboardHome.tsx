@@ -96,15 +96,15 @@ export const AdminDashboardHome: React.FC = () => {
     },
   ];
 
-  // Daily bookings chart data (Last 7 days in Bhubaneswar)
+  // Daily bookings chart data (Sunday through Saturday)
   const chartDays = [
+    { day: 'Sun', bookings: 18, gmv: 5300 },
     { day: 'Mon', bookings: 14, gmv: 4200 },
     { day: 'Tue', bookings: 19, gmv: 5800 },
     { day: 'Wed', bookings: 16, gmv: 4900 },
     { day: 'Thu', bookings: 22, gmv: 6800 },
     { day: 'Fri', bookings: 25, gmv: 8100 },
     { day: 'Sat', bookings: 31, gmv: 9900 },
-    { day: 'Sun', bookings: 18, gmv: 5300 },
   ];
   const maxDayBookings = Math.max(...chartDays.map((d) => d.bookings));
 
@@ -214,20 +214,20 @@ export const AdminDashboardHome: React.FC = () => {
           </div>
 
           {/* SVG Bar Chart with Tooltips */}
-          <div className="pt-6 pb-2">
-            <div className="h-56 flex items-end justify-between gap-3 sm:gap-6 px-2">
+          <div className="pt-8 pb-2 w-full overflow-hidden">
+            <div className="h-56 w-full grid grid-cols-7 gap-1.5 sm:gap-3 md:gap-4 items-end px-1 sm:px-2">
               {chartDays.map((item, i) => {
                 const heightPercent = Math.round((item.bookings / (maxDayBookings + 5)) * 100);
                 const isHighlight = item.day === 'Sat' || item.day === 'Sun';
                 return (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-2 group h-full justify-end">
-                    {/* Hover tooltip */}
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold text-white bg-[#0B2038] px-2 py-1 rounded shadow-md pointer-events-none whitespace-nowrap mb-1">
+                  <div key={i} className="relative flex flex-col items-center gap-2 group h-full justify-end min-w-0">
+                    {/* Hover tooltip positioned absolutely */}
+                    <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold text-white bg-[#0B2038] px-2 py-1 rounded shadow-md pointer-events-none whitespace-nowrap z-20">
                       {item.bookings} jobs (₹{item.gmv.toLocaleString('en-IN')})
                     </div>
 
                     {/* Bar */}
-                    <div className="w-full max-w-[42px] bg-teal-50 rounded-t-xl overflow-hidden h-full flex items-end">
+                    <div className="w-full max-w-[38px] bg-teal-50 rounded-t-xl overflow-hidden h-full flex items-end">
                       <div
                         style={{ height: `${heightPercent}%` }}
                         className={`w-full rounded-t-xl transition-all duration-500 ${
@@ -239,7 +239,7 @@ export const AdminDashboardHome: React.FC = () => {
                     </div>
 
                     {/* Label */}
-                    <span className="text-xs font-bold text-[#5B738B] group-hover:text-[#009E9B] transition-colors">
+                    <span className="text-xs font-bold text-[#5B738B] group-hover:text-[#009E9B] transition-colors truncate">
                       {item.day}
                     </span>
                   </div>
@@ -336,33 +336,33 @@ export const AdminDashboardHome: React.FC = () => {
             <table className="w-full text-left text-xs">
               <thead>
                 <tr className="border-b border-[#DCEEEB] text-[#5B738B] font-bold uppercase tracking-wider text-[11px]">
-                  <th className="pb-3 pl-2">Booking ID</th>
-                  <th className="pb-3">Customer</th>
-                  <th className="pb-3">Service</th>
-                  <th className="pb-3">Assigned Pro</th>
-                  <th className="pb-3">Distance</th>
-                  <th className="pb-3">Status</th>
-                  <th className="pb-3 pr-2 text-right">Actions</th>
+                  <th className="pb-3 pl-3 pr-2 whitespace-nowrap">Booking ID</th>
+                  <th className="pb-3 px-3 whitespace-nowrap">Customer</th>
+                  <th className="pb-3 px-3 whitespace-nowrap">Service</th>
+                  <th className="pb-3 px-3 whitespace-nowrap">Assigned Pro</th>
+                  <th className="pb-3 px-3 whitespace-nowrap">Distance</th>
+                  <th className="pb-3 px-3 whitespace-nowrap">Status</th>
+                  <th className="pb-3 pr-3 text-right whitespace-nowrap">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {bookings.slice(0, 5).map((booking) => (
                   <tr key={booking.bookingId} className="hover:bg-teal-50/30 transition-colors">
-                    <td className="py-3.5 pl-2 font-mono font-bold text-[#0B2038]">
+                    <td className="py-3.5 pl-3 pr-2 font-mono font-bold text-[#0B2038] whitespace-nowrap">
                       {booking.bookingId}
                     </td>
-                    <td className="py-3.5">
+                    <td className="py-3.5 px-3">
                       <div className="flex items-center gap-2">
                         <img
                           src={booking.customerAvatar}
                           alt={booking.customerName}
-                          className="w-7 h-7 rounded-full object-cover border border-slate-200"
+                          className="w-7 h-7 rounded-full object-cover border border-slate-200 shrink-0"
                         />
-                        <span className="font-semibold text-[#0B2038]">{booking.customerName}</span>
+                        <span className="font-semibold text-[#0B2038] whitespace-nowrap">{booking.customerName}</span>
                       </div>
                     </td>
-                    <td className="py-3.5 text-[#5B738B]">{booking.serviceName}</td>
-                    <td className="py-3.5">
+                    <td className="py-3.5 px-3 text-[#5B738B] whitespace-nowrap">{booking.serviceName}</td>
+                    <td className="py-3.5 px-3 whitespace-nowrap">
                       {booking.assignedWorkerName ? (
                         <span className="font-semibold text-[#0B2038]">
                           {booking.assignedWorkerName}
@@ -371,7 +371,7 @@ export const AdminDashboardHome: React.FC = () => {
                         <span className="text-slate-400 italic">Unassigned</span>
                       )}
                     </td>
-                    <td className="py-3.5">
+                    <td className="py-3.5 px-3 whitespace-nowrap">
                       {booking.workerDistance !== undefined ? (
                         <span className="font-bold text-[#009E9B]">
                           {booking.workerDistance} km
@@ -380,10 +380,10 @@ export const AdminDashboardHome: React.FC = () => {
                         <span className="text-slate-400">—</span>
                       )}
                     </td>
-                    <td className="py-3.5">
+                    <td className="py-3.5 px-3 whitespace-nowrap">
                       <StatusBadge status={booking.status} size="sm" />
                     </td>
-                    <td className="py-3.5 pr-2 text-right">
+                    <td className="py-3.5 pr-3 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-1.5">
                         <button
                           onClick={() => setSelectedBookingForGps(booking.bookingId)}
