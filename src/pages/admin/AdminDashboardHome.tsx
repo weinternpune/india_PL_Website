@@ -34,6 +34,10 @@ export const AdminDashboardHome: React.FC = () => {
     bookings,
     workers,
     customers,
+    chartDays,
+    isBackendConnected,
+    refreshFromBackend,
+    isLoading,
     autoDispatchWorker,
   } = useApp();
 
@@ -96,17 +100,8 @@ export const AdminDashboardHome: React.FC = () => {
     },
   ];
 
-  // Daily bookings chart data (Sunday through Saturday)
-  const chartDays = [
-    { day: 'Sun', bookings: 18, gmv: 5300 },
-    { day: 'Mon', bookings: 14, gmv: 4200 },
-    { day: 'Tue', bookings: 19, gmv: 5800 },
-    { day: 'Wed', bookings: 16, gmv: 4900 },
-    { day: 'Thu', bookings: 22, gmv: 6800 },
-    { day: 'Fri', bookings: 25, gmv: 8100 },
-    { day: 'Sat', bookings: 31, gmv: 9900 },
-  ];
-  const maxDayBookings = Math.max(...chartDays.map((d) => d.bookings));
+  // Max daily bookings for scaling the bar heights dynamically
+  const maxDayBookings = Math.max(...chartDays.map((d) => d.bookings), 1);
 
   // Status breakdown calculations
   const statusCounts = {
@@ -140,6 +135,21 @@ export const AdminDashboardHome: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2.5 flex-wrap">
+          {isBackendConnected ? (
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Live Backend Connected</span>
+            </div>
+          ) : (
+            <div
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-50/70 text-[#00827F] border border-teal-200 text-xs font-semibold"
+              title="All data is dynamic. Provide VITE_API_BASE_URL in .env to connect your backend."
+            >
+              <span className="w-2 h-2 rounded-full bg-[#009E9B]" />
+              <span>Dynamic Store Ready</span>
+            </div>
+          )}
+
           <button
             onClick={() => setIsNewBookingModalOpen(true)}
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-[#009E9B] border border-teal-200 text-xs font-bold hover:bg-teal-50 shadow-2xs transition-all"

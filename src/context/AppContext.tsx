@@ -8,6 +8,8 @@ import {
   NotificationItem,
   ServiceItem,
   Worker,
+  ChartDay,
+  CategoryBreakdownItem,
 } from '../types';
 import {
   initialAdminUser,
@@ -22,6 +24,13 @@ import {
   findNearestAvailableWorker,
   findNearestAvailableWorkers,
 } from '../services/gpsService';
+import { api, isBackendConnected, getApiBaseUrl } from '../services/api';
+import {
+  computeDashboardMetrics,
+  computeChartDays,
+  computeWeeklyTrend,
+  computeCategoryBreakdown,
+} from '../services/dataCalculations';
 
 interface AppContextType {
   // Auth
@@ -63,8 +72,17 @@ interface AppContextType {
   markNotificationAsRead: (id: string) => void;
   clearAllNotifications: () => void;
 
-  // Metrics
+  // Metrics & Dynamic Live Charts
   metrics: DashboardMetrics;
+  chartDays: ChartDay[];
+  weeklyTrend: { label: string; bookings: number; revenue: number; completed: number; cancelled: number }[];
+  categoryBreakdown: CategoryBreakdownItem[];
+
+  // Backend Integration State
+  isBackendConnected: boolean;
+  apiBaseUrl: string;
+  refreshFromBackend: () => Promise<void>;
+  isLoading: boolean;
 
   // Dev tools
   resetData: () => void;
@@ -143,18 +161,44 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify(notifications));
   }, [notifications]);
 
-  // Derived Metrics
-  const metrics: DashboardMetrics = {
-    totalBookings: bookings.length,
-    todayBookings: bookings.filter((b) => b.date.includes('05 Oct') || b.date.includes('Today')).length || 18,
-    activeWorkers: workers.filter((w) => w.status === 'Active' && w.availability === 'Available').length,
-    totalCustomers: customers.length,
-    gmv: bookings.reduce((sum, b) => (b.paymentStatus === 'Paid' ? sum + b.totalAmount : sum), 0) + 40000,
-    cancellationRate:
-      Math.round(
-        (bookings.filter((b) => b.status === 'Cancelled').length / (bookings.length || 1)) * 100 * 10
-      ) / 10 || 4.8,
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Derived Dynamic Analytics computed in real-time from active dataset
+  const metrics = computeDashboardMetrics(bookings, workers, customers);
+  const chartDays = computeChartDays(bookings);
+  const weeklyTrend = computeWeeklyTrend(bookings);
+  const categoryBreakdown = computeCategoryBreakdown(bookings);
+
+  // Sync with remote backend API if configured
+  const refreshFromBackend = async () => {
+    if (!isBackendConnected()) return;
+    setIsLoading(true);
+    try {
+      const [remoteBookings, remoteWorkers, remoteCustomers, remoteServices, remoteNotifs] =
+        await Promise.all([
+          api.bookings.getAll().catch(() => []),
+          api.workers.getAll().catch(() => []),
+          api.customers.getAll().catch(() => []),
+          api.services.getAll().catch(() => []),
+          api.notifications.getAll().catch(() => []),
+        ]);
+      if (remoteBookings.length) setBookings(remoteBookings);
+      if (remoteWorkers.length) setWorkers(remoteWorkers);
+      if (remoteCustomers.length) setCustomers(remoteCustomers);
+      if (remoteServices.length) setServices(remoteServices);
+      if (remoteNotifs.length) setNotifications(remoteNotifs);
+    } catch (err) {
+      console.warn('Backend sync failed, continuing with active local dynamic store:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  useEffect(() => {
+    if (isBackendConnected()) {
+      refreshFromBackend();
+    }
+  }, []);
 
   // Auth Methods
   const login = (identifier: string, _pass: string) => {
@@ -745,6 +789,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         markNotificationAsRead,
         clearAllNotifications,
         metrics,
+        chartDays,
+        weeklyTrend,
+        categoryBreakdown,
+        isBackendConnected: isBackendConnected(),
+        apiBaseUrl: getApiBaseUrl(),
+        refreshFromBackend,
+        isLoading,
         resetData,
       }}
     >

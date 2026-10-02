@@ -182,3 +182,30 @@ export interface DashboardMetrics {
   gmv: number;
   cancellationRate: number;
 }
+
+export interface ChartDay {
+  day: 'Sun' | 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat' | string;
+  bookings: number;
+  gmv: number;
+}
+
+export interface CategoryBreakdownItem {
+  name: string;
+  share: number;
+  amount: string;
+  rawAmount: number;
+  count: number;
+}
+
+export interface ReportsData {
+  timeRange: '7d' | '30d' | '90d';
+  weeklyTrend: {
+    label: string;
+    bookings: number;
+    revenue: number;
+    completed: number;
+    cancelled: number;
+  }[];
+  categoryBreakdown: CategoryBreakdownItem[];
+  metrics: DashboardMetrics;
+}

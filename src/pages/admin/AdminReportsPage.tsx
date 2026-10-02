@@ -17,7 +17,16 @@ import {
 } from 'lucide-react';
 
 export const AdminReportsPage: React.FC = () => {
-  const { metrics, bookings, workers, customers } = useApp();
+  const {
+    metrics,
+    bookings,
+    workers,
+    customers,
+    weeklyTrend,
+    categoryBreakdown,
+    isBackendConnected,
+    refreshFromBackend,
+  } = useApp();
   const [timeRange, setTimeRange] = useState<'7d' | '30d' | '90d'>('7d');
 
   // Counts from active bookings
@@ -25,25 +34,7 @@ export const AdminReportsPage: React.FC = () => {
   const pendingCount = bookings.filter((b) => b.status === 'Pending' || b.status === 'Finding Worker').length;
   const cancelledCount = bookings.filter((b) => b.status === 'Cancelled').length;
 
-  const weeklyTrend = [
-    { label: 'Sun', bookings: 18, revenue: 5300, completed: 18, cancelled: 0 },
-    { label: 'Mon', bookings: 14, revenue: 4200, completed: 13, cancelled: 1 },
-    { label: 'Tue', bookings: 19, revenue: 5800, completed: 18, cancelled: 1 },
-    { label: 'Wed', bookings: 16, revenue: 4900, completed: 15, cancelled: 0 },
-    { label: 'Thu', bookings: 22, revenue: 6800, completed: 21, cancelled: 1 },
-    { label: 'Fri', bookings: 25, revenue: 8100, completed: 23, cancelled: 2 },
-    { label: 'Sat', bookings: 31, revenue: 9900, completed: 30, cancelled: 1 },
-  ];
-
-  const maxRevenue = Math.max(...weeklyTrend.map((d) => d.revenue));
-
-  // Service breakdown
-  const categoryBreakdown = [
-    { name: 'Residential Cleaning', share: 44, amount: '₹19,800' },
-    { name: 'Deep Cleaning', share: 26, amount: '₹11,700' },
-    { name: 'Commercial & Office', share: 18, amount: '₹8,100' },
-    { name: 'Appliances & Repair', share: 12, amount: '₹5,400' },
-  ];
+  const maxRevenue = Math.max(...weeklyTrend.map((d) => d.revenue), 1000);
 
   const handleExportCSV = () => {
     const csvContent =
