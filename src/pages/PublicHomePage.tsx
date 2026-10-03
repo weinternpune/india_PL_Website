@@ -91,8 +91,8 @@ export const PublicHomePage: React.FC = () => {
                 </span>
               </h1>
 
-              {/* High-contrast Description */}
-              <p className="text-base sm:text-lg text-[#3E556E] max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+              {/* High-contrast Dark Description (Not dull) */}
+              <p className="text-base sm:text-lg text-[#0B2038] font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 INDIA P.L. is an intelligent operations ecosystem engineered for on-demand home &amp;
                 office services. Harness real-time Haversine GPS matching, background-verified pros,
                 automated job dispatch, and granular operational control.
@@ -118,8 +118,8 @@ export const PublicHomePage: React.FC = () => {
                 </button>
               </div>
 
-              {/* 4 Feature Badges: Full text visible with zero truncation (...) */}
-              <div className="pt-4 grid grid-cols-2 lg:grid-cols-4 gap-2.5 w-full max-w-2xl mx-auto lg:mx-0">
+              {/* 4 Feature Badges: Dynamic card width so text NEVER overflows outside */}
+              <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-2.5 w-full">
                 {[
                   { text: 'Trained Professionals', icon: Award },
                   { text: 'Safe & Hygienic', icon: ShieldCheck },
@@ -130,10 +130,10 @@ export const PublicHomePage: React.FC = () => {
                   return (
                     <div
                       key={i}
-                      className="h-11 px-3 rounded-xl bg-white/95 border border-[#DCEEEB] flex items-center justify-center sm:justify-start gap-2 text-left shadow-2xs hover:border-teal-300 hover:shadow-xs transition-all"
+                      className="h-10 sm:h-11 px-3.5 rounded-xl bg-white border-2 border-[#DCEEEB] inline-flex items-center gap-2 shadow-2xs hover:border-teal-300 hover:shadow-xs transition-all"
                     >
                       <Icon className="w-4 h-4 text-[#008A8E] shrink-0" />
-                      <span className="text-[11.5px] sm:text-xs font-bold text-[#0B2038] whitespace-nowrap">
+                      <span className="text-xs font-bold text-[#0B2038] whitespace-nowrap">
                         {item.text}
                       </span>
                     </div>
@@ -223,13 +223,13 @@ export const PublicHomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Grid (Compact top spacing, no redundant badge) */}
+      {/* Services Grid (Dark, High-contrast text) */}
       <section id="services" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2">
         <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B2038]">
             Popular Doorstep Services Managed by INDIA P.L.
           </h2>
-          <p className="text-sm text-[#3E556E] mt-2">
+          <p className="text-sm sm:text-base text-[#0B2038] font-medium mt-2">
             Standardized catalog with per-session pricing, verified tools, and flexible scheduling.
           </p>
         </div>
@@ -239,7 +239,7 @@ export const PublicHomePage: React.FC = () => {
             <div
               key={i}
               onClick={() => handleOpenDownload(srv.title)}
-              className="bg-white rounded-3xl border border-[#DCEEEB] shadow-sm hover:shadow-md hover:border-teal-300 transition-all overflow-hidden flex flex-col group cursor-pointer"
+              className="bg-white rounded-3xl border-2 border-[#DCEEEB] shadow-sm hover:shadow-md hover:border-teal-300 transition-all overflow-hidden flex flex-col group cursor-pointer"
             >
               <div className="relative h-44 overflow-hidden">
                 <img
@@ -247,10 +247,10 @@ export const PublicHomePage: React.FC = () => {
                   alt={srv.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/95 text-[#008A8E] text-[11px] font-bold shadow-sm">
+                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/95 text-[#008A8E] text-xs font-black shadow-sm">
                   {srv.badge}
                 </span>
-                <span className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-[#008A8E] text-white text-xs font-bold shadow-md">
+                <span className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-[#008A8E] text-white text-xs font-black shadow-md">
                   Starting {srv.price}
                 </span>
               </div>
@@ -259,13 +259,15 @@ export const PublicHomePage: React.FC = () => {
                   <h3 className="text-base font-bold text-[#0B2038] group-hover:text-[#008A8E] transition-colors">
                     {srv.title}
                   </h3>
-                  <p className="text-xs text-[#3E556E] mt-1.5 leading-relaxed">{srv.desc}</p>
+                  <p className="text-xs sm:text-[13px] text-[#0B2038] font-semibold mt-1.5 leading-relaxed">
+                    {srv.desc}
+                  </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
                   <span className="text-xs font-bold text-[#008A8E] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                     Book in App <ChevronRight className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-[11px] font-semibold text-slate-400">Fixed rate</span>
+                  <span className="text-xs font-bold text-[#0B2038]">Fixed rate</span>
                 </div>
               </div>
             </div>
@@ -273,17 +275,17 @@ export const PublicHomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* How GPS Matching Works (Compact & Clean) */}
+      {/* How GPS Matching Works (Single Line Title & Dark Fonts) */}
       <section id="how-it-works" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-[#E6F7F5] to-white rounded-3xl p-6 sm:p-10 border border-[#CFEAE7] shadow-xs">
-          <div className="max-w-2xl mb-8">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#008A8E]">
+        <div className="bg-gradient-to-br from-[#E6F7F5] to-white rounded-3xl p-6 sm:p-10 border-2 border-[#CFEAE7] shadow-xs">
+          <div className="mb-8">
+            <span className="text-xs font-black uppercase tracking-wider text-[#008A8E]">
               Automated Dispatch Logic
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B2038] mt-1">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-extrabold text-[#0B2038] mt-1 md:whitespace-nowrap">
               How the Automatic GPS Worker Assignment Operates
             </h2>
-            <p className="text-sm text-[#3E556E] mt-2">
+            <p className="text-sm sm:text-base text-[#0B2038] font-medium mt-2 max-w-3xl">
               Zero manual bottleneck. The system matches the nearest available, background-verified
               professional with instant fallback cascading.
             </p>
@@ -320,7 +322,7 @@ export const PublicHomePage: React.FC = () => {
               return (
                 <div
                   key={i}
-                  className="bg-white rounded-2xl p-5 border border-[#DCEEEB] shadow-2xs hover:shadow-sm hover:border-teal-300 transition-all flex flex-col justify-between"
+                  className="bg-white rounded-2xl p-5 border-2 border-[#DCEEEB] shadow-2xs hover:shadow-sm hover:border-teal-300 transition-all flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
@@ -332,7 +334,9 @@ export const PublicHomePage: React.FC = () => {
                       </div>
                     </div>
                     <h4 className="text-sm font-bold text-[#0B2038]">{st.title}</h4>
-                    <p className="text-xs text-[#3E556E] mt-1.5 leading-relaxed">{st.desc}</p>
+                    <p className="text-xs sm:text-[13px] text-[#0B2038] font-semibold mt-1.5 leading-relaxed">
+                      {st.desc}
+                    </p>
                   </div>
                 </div>
               );
@@ -341,18 +345,18 @@ export const PublicHomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section (High Contrast Dark Text) */}
       <section id="about" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           <div className="space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-[#008A8E] text-xs font-bold border border-teal-200">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-[#008A8E] text-xs font-black border border-teal-200">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>About INDIA P.L.</span>
             </div>
-            <h2 className="text-3xl font-extrabold text-[#0B2038] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2038] tracking-tight">
               Trusted Services. Better Tomorrow.
             </h2>
-            <p className="text-sm text-[#3E556E] leading-relaxed">
+            <p className="text-sm sm:text-base text-[#0B2038] font-medium leading-relaxed">
               INDIA P.L. was founded to transform the Indian informal service workforce into respected,
               fairly compensated micro-entrepreneurs. Our platform combines deep background verification,
               skills training, and cutting-edge logistics to deliver impeccable service at transparent rates.
@@ -364,7 +368,7 @@ export const PublicHomePage: React.FC = () => {
                 'Specialized high-density operational hubs in Odisha and nationwide',
                 'Enterprise-grade operations and dispatch suite for dispatchers',
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2.5 text-xs text-[#0B2038] font-bold">
+                <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-[#0B2038] font-bold">
                   <div className="w-4 h-4 rounded-full bg-teal-100 text-[#008A8E] flex items-center justify-center shrink-0">
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
@@ -382,9 +386,9 @@ export const PublicHomePage: React.FC = () => {
                 className="w-full h-80 object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-4 bg-white p-4 rounded-2xl border border-teal-200 shadow-xl max-w-xs">
-              <p className="text-xs font-bold text-[#0B2038]">Operational Headquarters</p>
-              <p className="text-[11px] text-[#3E556E] mt-0.5 font-medium">
+            <div className="absolute -bottom-6 -right-4 bg-white p-4 rounded-2xl border-2 border-teal-200 shadow-xl max-w-xs">
+              <p className="text-xs font-black text-[#0B2038]">Operational Headquarters</p>
+              <p className="text-xs text-[#0B2038] font-bold mt-0.5">
                 Patia &amp; Saheed Nagar, Bhubaneswar, Odisha - 751024
               </p>
             </div>
@@ -392,14 +396,14 @@ export const PublicHomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Dedicated Contact Section */}
+      {/* Dedicated Contact Section (High Contrast Dark Text) */}
       <section id="contact" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#DCEEEB] shadow-sm space-y-8">
+        <div className="bg-white rounded-3xl p-8 sm:p-10 border-2 border-[#DCEEEB] shadow-sm space-y-8">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B2038]">
               Contact the Operations Desk
             </h2>
-            <p className="text-sm text-[#3E556E] mt-2">
+            <p className="text-sm sm:text-base text-[#0B2038] font-medium mt-2">
               Have questions about service coverage, enterprise bookings, or service professional onboarding? 
               Connect with our live Bhubaneswar team.
             </p>
@@ -407,57 +411,63 @@ export const PublicHomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Phone Card */}
-            <div className="p-6 rounded-2xl bg-[#F4FBFB] border border-[#DCEEEB] flex flex-col justify-between">
+            <div className="p-6 rounded-2xl bg-[#F4FBFB] border-2 border-[#DCEEEB] flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center text-[#008A8E] mb-4">
                   <Phone className="w-5 h-5" />
                 </div>
                 <h4 className="text-sm font-bold text-[#0B2038]">Phone &amp; Helpline</h4>
-                <p className="text-xs text-[#3E556E] mt-1">Available 8:00 AM – 8:00 PM daily for customers &amp; partners.</p>
+                <p className="text-xs sm:text-[13px] text-[#0B2038] font-semibold mt-1">
+                  Available 8:00 AM – 8:00 PM daily for customers &amp; partners.
+                </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-slate-200/60">
+              <div className="mt-4 pt-3 border-t border-slate-200/80">
                 <a
                   href="tel:+919876543210"
-                  className="text-sm font-extrabold text-[#008A8E] hover:underline"
+                  className="text-sm font-black text-[#008A8E] hover:underline"
                 >
                   +91 98765 43210
                 </a>
-                <p className="text-[11px] text-slate-400">Toll-free: 1800-INDIA-PL</p>
+                <p className="text-xs font-bold text-[#0B2038] mt-0.5">Toll-free: 1800-INDIA-PL</p>
               </div>
             </div>
 
             {/* Email Card */}
-            <div className="p-6 rounded-2xl bg-[#F4FBFB] border border-[#DCEEEB] flex flex-col justify-between">
+            <div className="p-6 rounded-2xl bg-[#F4FBFB] border-2 border-[#DCEEEB] flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center text-[#008A8E] mb-4">
                   <Mail className="w-5 h-5" />
                 </div>
                 <h4 className="text-sm font-bold text-[#0B2038]">Support &amp; Inquiries</h4>
-                <p className="text-xs text-[#3E556E] mt-1">Send us inquiries regarding operations, invoicing, or compliance.</p>
+                <p className="text-xs sm:text-[13px] text-[#0B2038] font-semibold mt-1">
+                  Send us inquiries regarding operations, invoicing, or compliance.
+                </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-slate-200/60">
+              <div className="mt-4 pt-3 border-t border-slate-200/80">
                 <a
                   href="mailto:support@indiapl.com"
-                  className="text-sm font-extrabold text-[#008A8E] hover:underline"
+                  className="text-sm font-black text-[#008A8E] hover:underline"
                 >
                   support@indiapl.com
                 </a>
-                <p className="text-[11px] text-slate-400">Avg. response: &lt; 2 hours</p>
+                <p className="text-xs font-bold text-[#0B2038] mt-0.5">Avg. response: &lt; 2 hours</p>
               </div>
             </div>
 
             {/* Office Hub Card */}
-            <div className="p-6 rounded-2xl bg-[#F4FBFB] border border-[#DCEEEB] flex flex-col justify-between">
+            <div className="p-6 rounded-2xl bg-[#F4FBFB] border-2 border-[#DCEEEB] flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center text-[#008A8E] mb-4">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <h4 className="text-sm font-bold text-[#0B2038]">Central Operations Hub</h4>
-                <p className="text-xs text-[#3E556E] mt-1">Patia &amp; Saheed Nagar, Bhubaneswar, Odisha, India - 751024</p>
+                <p className="text-xs sm:text-[13px] text-[#0B2038] font-semibold mt-1">
+                  Patia &amp; Saheed Nagar, Bhubaneswar, Odisha, India - 751024
+                </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-slate-200/60">
-                <span className="text-xs font-bold text-[#0B2038]">High Density Hub #1</span>
-                <p className="text-[11px] text-[#008A8E] font-semibold">Bhubaneswar-Cuttack Region</p>
+              <div className="mt-4 pt-3 border-t border-slate-200/80">
+                <span className="text-xs font-black text-[#0B2038]">High Density Hub #1</span>
+                <p className="text-xs text-[#008A8E] font-bold mt-0.5">Bhubaneswar-Cuttack Region</p>
               </div>
             </div>
           </div>

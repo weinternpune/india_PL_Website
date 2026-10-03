@@ -28,7 +28,7 @@ export const IndiaPLLogo: React.FC<IndiaPLLogoProps> = ({
   };
 
   const subtitleSizes = {
-    sm: 'text-[9px]',
+    sm: 'text-[9.5px]',
     md: 'text-[11px]',
     lg: 'text-xs',
   };
@@ -59,8 +59,8 @@ export const IndiaPLLogo: React.FC<IndiaPLLogoProps> = ({
             )}
           </div>
           <span
-            className={`font-semibold tracking-tight mt-1 ${
-              isWhite ? 'text-teal-200/90' : 'text-[#5B738B]'
+            className={`font-bold tracking-tight mt-1 ${
+              isWhite ? 'text-teal-200/90' : 'text-[#0B2038]'
             } ${subtitleSizes[size]}`}
           >
             Trusted Services. Better Tomorrow.

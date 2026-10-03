@@ -83,7 +83,7 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
 
         {/* Body content */}
         <div className="p-6 space-y-6">
-          <p className="text-sm text-[#3E556E] leading-relaxed">
+          <p className="text-sm text-[#0B2038] font-medium leading-relaxed">
             Experience lightning-fast doorstep service bookings with real-time GPS technician dispatch, 
             instant booking confirmations, and transparent per-session pricing directly on your smartphone.
           </p>
@@ -103,7 +103,7 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
                     <Icon className="w-4 h-4 text-[#008A8E]" />
                     <h4 className="text-xs font-bold text-[#0B2038]">{f.title}</h4>
                   </div>
-                  <p className="text-[11px] text-[#5B738B] leading-tight">{f.desc}</p>
+                  <p className="text-[11.5px] text-[#0B2038] font-medium leading-tight">{f.desc}</p>
                 </div>
               );
             })}
@@ -111,11 +111,11 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
 
           {/* In-app notice when build is in progress */}
           {downloadNotice && (
-            <div className="p-4 rounded-2xl bg-teal-50 border border-teal-300 text-teal-900 text-xs font-semibold space-y-1 animate-in fade-in">
+            <div className="p-4 rounded-2xl bg-teal-50 border border-teal-300 text-teal-950 text-xs font-semibold space-y-1 animate-in fade-in">
               <p className="font-bold text-[#008A8E] flex items-center gap-1.5">
                 <span>🚀</span> App Release in Progress
               </p>
-              <p className="text-slate-600">
+              <p className="text-[#0B2038] font-medium">
                 The INDIA P.L. Customer App is in final staging. The official Google Play Store download link will activate automatically once the production release is finalized.
               </p>
             </div>
@@ -140,7 +140,7 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
           </div>
 
           <div className="text-center">
-            <p className="text-[11px] text-[#71879D]">
+            <p className="text-xs text-[#0B2038] font-bold">
               Currently serving Bhubaneswar, Cuttack &amp; expanding across Odisha.
             </p>
           </div>
