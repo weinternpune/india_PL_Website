@@ -279,6 +279,10 @@ export interface PayoutRequest {
 export interface PayoutMetrics {
   totalPendingPayouts: number;
   pendingRequestsCount: number;
+  pendingCount: number;
+  pendingAmount: number;
+  underReviewCount: number;
+  underReviewAmount: number;
   paidThisMonth: number;
   totalWorkerEarnings: number;
 }

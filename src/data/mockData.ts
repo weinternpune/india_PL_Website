@@ -1372,6 +1372,10 @@ export const initialPayoutRequests: PayoutRequest[] = [
 export const initialPayoutMetrics: PayoutMetrics = {
   totalPendingPayouts: 3600, // PO-801 (1200) + PO-802 (2400)
   pendingRequestsCount: 2,
+  pendingCount: 1, // PO-801
+  pendingAmount: 1200,
+  underReviewCount: 1, // PO-802
+  underReviewAmount: 2400,
   paidThisMonth: 1800, // PO-804
   totalWorkerEarnings: 28150,
 };

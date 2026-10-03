@@ -54,39 +54,53 @@ export const AdminPayoutsPage: React.FC = () => {
     return matchesTab && matchesSearch;
   });
 
+  const formatDisplayDate = (dateStr: string) => {
+    try {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr;
+      return d.toLocaleDateString('en-IN', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+      });
+    } catch {
+      return dateStr;
+    }
+  };
+
   const getStatusBadge = (status: PayoutStatus) => {
     switch (status) {
       case 'Pending':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-300">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-300 shadow-2xs whitespace-nowrap">
             <Clock className="w-3.5 h-3.5 text-amber-700" />
-            Pending Review
+            Pending
           </span>
         );
       case 'Under Review':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-900 border border-blue-300">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-900 border border-blue-300 shadow-2xs whitespace-nowrap">
             <RefreshCw className="w-3.5 h-3.5 text-blue-700 animate-spin" />
             Under Review
           </span>
         );
       case 'Approved':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-900 border border-emerald-300">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-900 border border-emerald-300 shadow-2xs whitespace-nowrap">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
             Approved
           </span>
         );
       case 'Paid':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-teal-50 text-teal-900 border border-[#00A896]/30">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-teal-50 text-teal-900 border border-[#008A8E]/30 shadow-2xs whitespace-nowrap">
             <ShieldCheck className="w-3.5 h-3.5 text-[#008A8E]" />
             Paid & Settled
           </span>
         );
       case 'Rejected':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-900 border border-rose-300">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-900 border border-rose-300 shadow-2xs whitespace-nowrap">
             <XCircle className="w-3.5 h-3.5 text-rose-700" />
             Rejected
           </span>
@@ -150,94 +164,138 @@ export const AdminPayoutsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 4 Summary Cards */}
+      {/* 4 Summary Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Card 1: Total Pending Payouts */}
-        <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm relative overflow-hidden">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0B2038]">
-              Total Pending Payouts
-            </span>
-            <div className="w-9 h-9 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center border border-amber-200">
-              <Clock className="w-5 h-5" />
+        {/* Card 1: Pending Requests Card */}
+        <div
+          onClick={() => setActiveTab('Pending')}
+          className={`bg-white rounded-2xl p-5 border transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between ${
+            activeTab === 'Pending'
+              ? 'border-amber-400 ring-2 ring-amber-400/20 shadow-md'
+              : 'border-slate-200 shadow-sm hover:border-amber-300 hover:shadow-md'
+          }`}
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0B2038]">
+                Pending Requests
+              </span>
+              <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center border border-amber-200">
+                <Clock className="w-4 h-4" />
+              </div>
+            </div>
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="text-2xl font-black text-[#0B2038] tracking-tight">
+                ₹{payoutMetrics.pendingAmount.toLocaleString('en-IN')}
+              </span>
+              <span className="text-xs font-bold text-amber-900 bg-amber-100/80 px-2 py-0.5 rounded-full border border-amber-200">
+                {payoutMetrics.pendingCount} {payoutMetrics.pendingCount === 1 ? 'request' : 'requests'}
+              </span>
             </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-2xl font-black text-[#0B2038]">
-              ₹{payoutMetrics.totalPendingPayouts.toLocaleString('en-IN')}
-            </span>
-            <span className="text-xs font-bold text-amber-800">Awaiting transfer</span>
+          <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-700">
+            <span className="font-semibold">Awaiting Verification</span>
+            <span className="text-amber-800 font-bold hover:underline">Filter →</span>
           </div>
-          <p className="text-xs font-medium text-slate-700 mt-2">
-            Across pending & under-review requests
-          </p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-amber-400" />
         </div>
 
-        {/* Card 2: Pending Requests Count */}
-        <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm relative overflow-hidden">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0B2038]">
-              Pending Requests
-            </span>
-            <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center border border-blue-200">
-              <FileCheck className="w-5 h-5" />
+        {/* Card 2: Under Review / Pending Review Card */}
+        <div
+          onClick={() => setActiveTab('Under Review')}
+          className={`bg-white rounded-2xl p-5 border transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between ${
+            activeTab === 'Under Review'
+              ? 'border-blue-400 ring-2 ring-blue-400/20 shadow-md'
+              : 'border-slate-200 shadow-sm hover:border-blue-300 hover:shadow-md'
+          }`}
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0B2038]">
+                Under Review
+              </span>
+              <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-800 flex items-center justify-center border border-blue-200">
+                <RefreshCw className="w-4 h-4" />
+              </div>
+            </div>
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="text-2xl font-black text-[#0B2038] tracking-tight">
+                ₹{payoutMetrics.underReviewAmount.toLocaleString('en-IN')}
+              </span>
+              <span className="text-xs font-bold text-blue-900 bg-blue-100/80 px-2 py-0.5 rounded-full border border-blue-200">
+                {payoutMetrics.underReviewCount} {payoutMetrics.underReviewCount === 1 ? 'request' : 'requests'}
+              </span>
             </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-2xl font-black text-[#0B2038]">
-              {payoutMetrics.pendingRequestsCount}
-            </span>
-            <span className="text-xs font-bold text-blue-800">Requests</span>
+          <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-700">
+            <span className="font-semibold">Review In Progress</span>
+            <span className="text-blue-800 font-bold hover:underline">Filter →</span>
           </div>
-          <p className="text-xs font-medium text-slate-700 mt-2">
-            Requires admin approval
-          </p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-500" />
         </div>
 
         {/* Card 3: Paid This Month */}
-        <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm relative overflow-hidden">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0B2038]">
-              Paid This Month
-            </span>
-            <div className="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-200">
-              <CheckCircle2 className="w-5 h-5" />
+        <div
+          onClick={() => setActiveTab('Paid')}
+          className={`bg-white rounded-2xl p-5 border transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between ${
+            activeTab === 'Paid'
+              ? 'border-emerald-400 ring-2 ring-emerald-400/20 shadow-md'
+              : 'border-slate-200 shadow-sm hover:border-emerald-300 hover:shadow-md'
+          }`}
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0B2038]">
+                Paid This Month
+              </span>
+              <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center border border-emerald-200">
+                <CheckCircle2 className="w-4 h-4" />
+              </div>
+            </div>
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="text-2xl font-black text-[#0B2038] tracking-tight">
+                ₹{payoutMetrics.paidThisMonth.toLocaleString('en-IN')}
+              </span>
+              <span className="text-xs font-bold text-emerald-900 bg-emerald-100/80 px-2 py-0.5 rounded-full border border-emerald-200">
+                Disbursed
+              </span>
             </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-2xl font-black text-[#0B2038]">
-              ₹{payoutMetrics.paidThisMonth.toLocaleString('en-IN')}
-            </span>
-            <span className="text-xs font-bold text-emerald-800">Disbursed</span>
+          <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-700">
+            <span className="font-semibold">Credited to Pro Bank/UPI</span>
+            <span className="text-emerald-800 font-bold hover:underline">Filter →</span>
           </div>
-          <p className="text-xs font-medium text-slate-700 mt-2">
-            Successfully credited to workers
-          </p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-emerald-500" />
         </div>
 
         {/* Card 4: Total Worker Earnings */}
-        <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm relative overflow-hidden">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0B2038]">
-              Total Worker Earnings
-            </span>
-            <div className="w-9 h-9 rounded-lg bg-teal-50 text-[#008A8E] flex items-center justify-center border border-teal-200">
-              <IndianRupee className="w-5 h-5" />
+        <div
+          onClick={() => setActiveTab('All')}
+          className={`bg-white rounded-2xl p-5 border transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between ${
+            activeTab === 'All'
+              ? 'border-[#008A8E] ring-2 ring-[#008A8E]/20 shadow-md'
+              : 'border-slate-200 shadow-sm hover:border-teal-300 hover:shadow-md'
+          }`}
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0B2038]">
+                Total Worker Earnings
+              </span>
+              <div className="w-8 h-8 rounded-xl bg-teal-50 text-[#008A8E] flex items-center justify-center border border-teal-200">
+                <IndianRupee className="w-4 h-4" />
+              </div>
+            </div>
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="text-2xl font-black text-[#0B2038] tracking-tight">
+                ₹{payoutMetrics.totalWorkerEarnings.toLocaleString('en-IN')}
+              </span>
+              <span className="text-xs font-bold text-teal-900 bg-teal-100/80 px-2 py-0.5 rounded-full border border-teal-200">
+                Share: 75%
+              </span>
             </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-2xl font-black text-[#0B2038]">
-              ₹{payoutMetrics.totalWorkerEarnings.toLocaleString('en-IN')}
-            </span>
-            <span className="text-xs font-bold text-teal-800">Platform share: 75%</span>
+          <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-700">
+            <span className="font-semibold">Cumulative Payouts Pool</span>
+            <span className="text-[#008A8E] font-bold hover:underline">All ({payoutRequests.length}) →</span>
           </div>
-          <p className="text-xs font-medium text-slate-700 mt-2">
-            Cumulative professional payouts
-          </p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#008A8E]" />
         </div>
       </div>
 
@@ -338,7 +396,7 @@ export const AdminPayoutsPage: React.FC = () => {
                             <p className="font-bold text-[#0B2038] group-hover:text-[#008A8E] transition-colors">
                               {payout.workerName}
                             </p>
-                            <p className="text-[11px] font-medium text-slate-700">
+                            <p className="text-[11px] font-medium text-slate-700 whitespace-nowrap">
                               {payout.workerPhone}
                             </p>
                           </div>
@@ -346,8 +404,8 @@ export const AdminPayoutsPage: React.FC = () => {
                       </td>
 
                       {/* Date */}
-                      <td className="py-3.5 px-4 font-semibold text-slate-800">
-                        {payout.requestedDate}
+                      <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap">
+                        {formatDisplayDate(payout.requestedDate)}
                       </td>
 
                       {/* Jobs */}
@@ -454,7 +512,7 @@ export const AdminPayoutsPage: React.FC = () => {
                   {getStatusBadge(selectedPayout.status)}
                 </div>
                 <p className="text-xs font-medium text-slate-700 mt-0.5">
-                  Requested on {selectedPayout.requestedDate}
+                  Requested on {formatDisplayDate(selectedPayout.requestedDate)}
                 </p>
               </div>
               <button

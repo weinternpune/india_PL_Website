@@ -213,11 +213,17 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Derived Payout Metrics computed dynamically
   const payoutMetrics: PayoutMetrics = React.useMemo(() => {
-    const pendingList = payoutRequests.filter(
-      (p) => p.status === 'Pending' || p.status === 'Under Review'
-    );
-    const totalPendingPayouts = pendingList.reduce((sum, p) => sum + p.requestedAmount, 0);
-    const pendingRequestsCount = pendingList.length;
+    const pendingOnlyList = payoutRequests.filter((p) => p.status === 'Pending');
+    const underReviewList = payoutRequests.filter((p) => p.status === 'Under Review');
+
+    const pendingCount = pendingOnlyList.length;
+    const pendingAmount = pendingOnlyList.reduce((sum, p) => sum + p.requestedAmount, 0);
+
+    const underReviewCount = underReviewList.length;
+    const underReviewAmount = underReviewList.reduce((sum, p) => sum + p.requestedAmount, 0);
+
+    const totalPendingPayouts = pendingAmount + underReviewAmount;
+    const pendingRequestsCount = pendingCount + underReviewCount;
 
     const paidList = payoutRequests.filter((p) => p.status === 'Paid');
     const paidThisMonth = paidList.reduce((sum, p) => sum + p.requestedAmount, 0);
@@ -235,6 +241,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return {
       totalPendingPayouts,
       pendingRequestsCount,
+      pendingCount,
+      pendingAmount,
+      underReviewCount,
+      underReviewAmount,
       paidThisMonth,
       totalWorkerEarnings,
     };
