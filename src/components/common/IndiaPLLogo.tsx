@@ -1,4 +1,5 @@
 import React from 'react';
+import officialLogoSymbol from '../../assets/india_pl_symbol.png';
 
 interface IndiaPLLogoProps {
   className?: string;
@@ -15,15 +16,15 @@ export const IndiaPLLogo: React.FC<IndiaPLLogoProps> = ({
   const isAdmin = variant === 'admin';
 
   const iconSizes = {
-    sm: 'w-7 h-7',
-    md: 'w-9 h-9',
-    lg: 'w-12 h-12',
+    sm: 'h-8 w-auto min-w-[28px]',
+    md: 'h-10 w-auto min-w-[34px]',
+    lg: 'h-13 w-auto min-w-[44px]',
   };
 
   const textSizes = {
     sm: 'text-base',
-    md: 'text-lg',
-    lg: 'text-2xl',
+    md: 'text-lg sm:text-xl',
+    lg: 'text-2xl sm:text-3xl',
   };
 
   const subtitleSizes = {
@@ -33,51 +34,33 @@ export const IndiaPLLogo: React.FC<IndiaPLLogoProps> = ({
   };
 
   return (
-    <div className={`inline-flex items-center gap-2.5 ${className}`}>
-      {/* Official Circular Icon from PDF */}
-      <div className={`relative flex items-center justify-center rounded-full bg-[#009E9B] shadow-sm ${iconSizes[size]}`}>
-        {/* Stylized person with uplifted arms forming V-symbol */}
-        <svg
-          viewBox="0 0 40 40"
-          className="w-3/4 h-3/4"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Head */}
-          <circle cx="20" cy="12" r="4.2" fill="#FFFFFF" />
-          {/* Uplifted V-wings / Body */}
-          <path
-            d="M9 19C13.5 24 16.5 26.5 20 32C23.5 26.5 26.5 24 31 19C28 20.8 24.5 21.8 20 21.8C15.5 21.8 12 20.8 9 19Z"
-            fill="#FFFFFF"
-          />
-          <path
-            d="M11 16.5C14.5 19.5 17 21 20 21C23 21 25.5 19.5 29 16.5C26.5 15.5 23.5 15 20 15C16.5 15 13.5 15.5 11 16.5Z"
-            fill="#E0F7F5"
-          />
-        </svg>
-        {/* Subtle cyan ring glow */}
-        <div className="absolute inset-0 rounded-full border border-teal-200/50 pointer-events-none" />
+    <div className={`inline-flex items-center gap-2.5 select-none ${className}`}>
+      {/* Official Symbol from the INDIA P.L. PDF */}
+      <div className="relative shrink-0 flex items-center justify-center">
+        <img
+          src={officialLogoSymbol}
+          alt="INDIA P.L. Official Logo"
+          className={`${iconSizes[size]} object-contain drop-shadow-xs transition-transform duration-200`}
+          loading="eager"
+        />
       </div>
 
       {variant !== 'icon-only' && (
         <div className="flex flex-col leading-none">
           <div className="flex items-center gap-1.5">
-            <span
-              className={`font-extrabold tracking-tight ${
-                isWhite ? 'text-white' : 'text-[#009E9B]'
-              } ${textSizes[size]}`}
-            >
-              INDIA P.L.
+            <span className={`font-extrabold tracking-tight ${textSizes[size]}`}>
+              <span className="text-[#FF751F]">I</span>
+              <span className={isWhite ? 'text-white' : 'text-[#008A8E]'}>NDIA P.L.</span>
             </span>
             {isAdmin && (
-              <span className="px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-teal-100 text-[#00827F] rounded border border-teal-300">
+              <span className="px-1.5 py-0.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-teal-100/90 text-[#00827F] rounded border border-teal-300">
                 ADMIN
               </span>
             )}
           </div>
           <span
-            className={`font-medium tracking-normal mt-0.5 ${
-              isWhite ? 'text-teal-100' : 'text-[#5B738B]'
+            className={`font-semibold tracking-tight mt-1 ${
+              isWhite ? 'text-teal-200/90' : 'text-[#5B738B]'
             } ${subtitleSizes[size]}`}
           >
             Trusted Services. Better Tomorrow.
