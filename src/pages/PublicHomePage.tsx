@@ -16,17 +16,26 @@ import {
   Check,
   Phone,
   Mail,
-  Headphones,
-  Calendar,
 } from 'lucide-react';
 
 export const PublicHomePage: React.FC = () => {
   const [downloadModalOpen, setDownloadModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<string>('');
 
+  const playStoreUrl = import.meta.env.VITE_PLAY_STORE_URL || 'https://play.google.com/store/apps';
+
   const handleOpenDownload = (serviceName?: string) => {
     setSelectedService(serviceName || '');
     setDownloadModalOpen(true);
+  };
+
+  const handleGpsMatchingClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (playStoreUrl && playStoreUrl !== '#') {
+      window.open(playStoreUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      handleOpenDownload('GPS Matching & Booking App');
+    }
   };
 
   const serviceHighlights = [
@@ -78,11 +87,14 @@ export const PublicHomePage: React.FC = () => {
                 <span>Centralized Operations &amp; Workforce Platform</span>
               </div>
 
-              {/* Main Headline with structured typography */}
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0B2038] tracking-tight leading-[1.12]">
-                Manage Customers,<br />
-                Bookings &amp;<br />
-                <span className="text-[#008A8E]">Service Professionals</span>
+              {/* Main Headline: Line 1 dark navy in one line, Line 2 teal in one line */}
+              <h1 className="font-extrabold tracking-tight">
+                <span className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[52px] text-[#0B2038] block sm:whitespace-nowrap leading-tight">
+                  Manage Customers, Bookings &amp;
+                </span>
+                <span className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[52px] text-[#008A8E] block mt-1 sm:whitespace-nowrap leading-tight">
+                  Service Professionals
+                </span>
               </h1>
 
               {/* High-contrast Description */}
@@ -103,16 +115,19 @@ export const PublicHomePage: React.FC = () => {
                 </Link>
 
                 <a
-                  href="#how-it-works"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-white text-[#0B2038] font-bold text-sm border-2 border-[#DCEEEB] hover:border-teal-400 hover:bg-teal-50/50 transition-all shadow-2xs"
+                  href={playStoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleGpsMatchingClick}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-white text-[#0B2038] font-bold text-sm border-2 border-[#DCEEEB] hover:border-teal-400 hover:bg-teal-50/50 transition-all shadow-2xs cursor-pointer active:scale-98"
                 >
                   <Compass className="w-4 h-4 text-[#008A8E]" />
                   <span>How GPS Matching Works</span>
                 </a>
               </div>
 
-              {/* 4 Feature Badges: Identical height, single-line text on desktop */}
-              <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl mx-auto lg:mx-0">
+              {/* 4 Feature Badges: Full text visible with zero truncation (...) */}
+              <div className="pt-4 grid grid-cols-2 lg:grid-cols-4 gap-2.5 w-full max-w-2xl mx-auto lg:mx-0">
                 {[
                   { text: 'Trained Professionals', icon: Award },
                   { text: 'Safe & Hygienic', icon: ShieldCheck },
@@ -126,7 +141,7 @@ export const PublicHomePage: React.FC = () => {
                       className="h-11 px-3 rounded-xl bg-white/95 border border-[#DCEEEB] flex items-center justify-center sm:justify-start gap-2 text-left shadow-2xs hover:border-teal-300 hover:shadow-xs transition-all"
                     >
                       <Icon className="w-4 h-4 text-[#008A8E] shrink-0" />
-                      <span className="text-[11px] sm:text-xs font-bold text-[#0B2038] whitespace-nowrap overflow-hidden text-ellipsis">
+                      <span className="text-[11.5px] sm:text-xs font-bold text-[#0B2038] whitespace-nowrap">
                         {item.text}
                       </span>
                     </div>
@@ -135,30 +150,39 @@ export const PublicHomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right-Side Operations Preview Card (Floating, Modern, Redesigned) */}
+            {/* Right-Side Operations Preview Card (Floating, Luminous Lighting & High-Contrast Dark Fonts) */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-md animate-gentle-float">
-                {/* Floating Preview Card */}
-                <div className="bg-white rounded-3xl p-6 border-2 border-[#DCEEEB] shadow-2xl space-y-4 relative z-10">
+                {/* Multi-layered Luminous Lighting Aura */}
+                <div className="absolute -inset-2 rounded-[36px] bg-gradient-to-r from-teal-400/35 via-cyan-300/40 to-teal-500/35 blur-2xl opacity-80 animate-pulse pointer-events-none" />
+                <div className="absolute -inset-0.5 rounded-[30px] bg-gradient-to-br from-teal-300/80 via-transparent to-cyan-300/80 opacity-90 pointer-events-none" />
+
+                {/* Floating Preview Card Container */}
+                <div className="relative bg-gradient-to-b from-white via-[#FCFEFE] to-[#F2FAF9] rounded-3xl p-6 border-2 border-teal-300/90 shadow-[0_25px_60px_-15px_rgba(0,138,142,0.35),0_0_30px_rgba(45,212,191,0.25)] space-y-4 z-10 overflow-hidden">
+                  {/* Interior Radial Lighting Reflections */}
+                  <div className="absolute -top-16 -right-16 w-52 h-52 bg-gradient-to-br from-teal-300/30 to-transparent rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute top-1/2 -left-12 w-40 h-40 bg-gradient-to-tr from-cyan-200/25 to-transparent rounded-full blur-xl pointer-events-none" />
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-teal-300 to-transparent pointer-events-none" />
+
                   {/* Top Bar with Official Logo & Location */}
-                  <div className="flex items-center justify-between pb-3.5 border-b border-slate-100">
+                  <div className="flex items-center justify-between pb-3.5 border-b border-teal-100">
                     <IndiaPLLogo size="sm" />
-                    <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#008A8E] bg-teal-50 px-2.5 py-1 rounded-full border border-teal-200">
-                      <MapPin className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-1.5 text-xs font-black text-[#044E51] bg-teal-100/90 px-3 py-1 rounded-full border border-teal-300 shadow-2xs">
+                      <MapPin className="w-3.5 h-3.5 text-[#044E51]" />
                       <span>Bhubaneswar Hub</span>
                     </div>
                   </div>
 
-                  {/* Active Booking Block */}
-                  <div className="p-4 rounded-2xl bg-[#F4FBFB] border border-[#DCEEEB] space-y-2.5">
+                  {/* Active Booking Block with High-Contrast Dark Text */}
+                  <div className="p-4 rounded-2xl bg-[#EAF8F6] border-2 border-teal-200/90 shadow-2xs space-y-2.5 relative">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-extrabold text-[#0B2038]">Booking #1001</span>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-100 text-[#00827F]">
+                        <span className="text-xs font-black text-[#0B2038]">Booking #1001</span>
+                        <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-teal-200/90 text-[#044E51] border border-teal-400/60">
                           Residential Cleaning
                         </span>
                       </div>
-                      <span className="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                      <span className="text-xs font-black px-2.5 py-0.5 rounded-full bg-emerald-200 text-[#064E3B] border border-emerald-400 shadow-2xs">
                         Accepted
                       </span>
                     </div>
@@ -167,43 +191,43 @@ export const PublicHomePage: React.FC = () => {
                       <img
                         src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=256&q=80"
                         alt="Ramesh Kumar"
-                        className="w-11 h-11 rounded-xl object-cover border-2 border-[#008A8E] shadow-2xs"
+                        className="w-11 h-11 rounded-xl object-cover border-2 border-[#008A8E] shadow-sm"
                       />
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-bold text-[#0B2038]">Ramesh Kumar</p>
-                        <p className="text-[11px] text-[#3E556E] font-medium truncate">
+                        <p className="text-sm font-black text-[#0B2038]">Ramesh Kumar</p>
+                        <p className="text-xs text-[#0B2038] font-bold truncate">
                           Cleaning Specialist • 2.3 km away
                         </p>
                       </div>
                       <div className="text-right shrink-0">
-                        <span className="text-sm font-black text-[#008A8E]">₹297</span>
-                        <p className="text-[10px] font-semibold text-slate-400">Patia, BBS</p>
+                        <span className="text-base font-black text-[#006669]">₹297</span>
+                        <p className="text-[11px] font-black text-[#0B2038]">Patia, BBS</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Status Indicators Strip */}
-                  <div className="p-3 rounded-2xl bg-teal-50/70 border border-teal-200/80 flex items-center justify-between text-xs">
+                  <div className="p-3.5 rounded-2xl bg-teal-100/90 border border-teal-300 flex items-center justify-between text-xs shadow-2xs">
                     <div className="flex items-center gap-2">
-                      <Compass className="w-4 h-4 text-[#008A8E] animate-spin" />
-                      <span className="font-bold text-[#007377]">
+                      <Compass className="w-4 h-4 text-[#044E51] animate-spin" />
+                      <span className="font-black text-[#044E51]">
                         GPS Matching Active
                       </span>
                     </div>
-                    <span className="text-[11px] font-bold text-[#008A8E] bg-white px-2 py-0.5 rounded-full border border-teal-200">
+                    <span className="text-xs font-black text-[#044E51] bg-white px-2.5 py-1 rounded-full border border-teal-300 shadow-2xs">
                       Haversine OK
                     </span>
                   </div>
                 </div>
 
-                {/* Layered Floating Status Badge */}
-                <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-3.5 border border-[#CFEAE7] shadow-xl flex items-center gap-3 z-20">
+                {/* Layered Floating Status Badge with Lighting */}
+                <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-3.5 border-2 border-teal-300 shadow-[0_10px_30px_rgba(0,138,142,0.35)] flex items-center gap-3 z-20">
                   <div className="w-9 h-9 rounded-xl bg-[#008A8E] text-white flex items-center justify-center font-black text-sm shadow-xs">
                     ✓
                   </div>
                   <div>
-                    <span className="text-xs font-extrabold text-[#0B2038] block">32 Active Pros</span>
-                    <span className="text-[10px] text-[#3E556E] font-semibold">Ready in Bhubaneswar</span>
+                    <span className="text-xs font-black text-[#0B2038] block">32 Active Pros</span>
+                    <span className="text-xs text-[#0B2038] font-bold">Ready in Bhubaneswar</span>
                   </div>
                 </div>
               </div>
@@ -385,10 +409,6 @@ export const PublicHomePage: React.FC = () => {
       <section id="contact" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#DCEEEB] shadow-sm space-y-8">
           <div className="text-center max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-[#008A8E] text-xs font-bold mb-3 border border-teal-200">
-              <Headphones className="w-3.5 h-3.5" />
-              <span>Direct Support &amp; Operations</span>
-            </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B2038]">
               Contact the Operations Desk
             </h2>
