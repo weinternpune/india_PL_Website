@@ -116,18 +116,10 @@ export const AdminDashboardHome: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2.5 flex-wrap">
-          {isBackendConnected ? (
+          {isBackendConnected && (
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-900 border border-emerald-300 text-xs font-bold">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
               <span>Live Backend Connected</span>
-            </div>
-          ) : (
-            <div
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-50 text-teal-900 border border-teal-300 text-xs font-bold"
-              title="All data is dynamic. Provide VITE_API_BASE_URL in .env to connect your backend."
-            >
-              <span className="w-2 h-2 rounded-full bg-[#008A8E]" />
-              <span>Dynamic Store Ready</span>
             </div>
           )}
 
