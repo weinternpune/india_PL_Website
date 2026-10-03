@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IndiaPLLogo } from '../common/IndiaPLLogo';
-import { X, Smartphone, ShieldCheck, Star, MapPin, QrCode, ExternalLink } from 'lucide-react';
+import { X, Smartphone, ShieldCheck, Star, MapPin, ExternalLink } from 'lucide-react';
 
 interface AppDownloadModalProps {
   isOpen: boolean;
@@ -13,15 +13,17 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
   onClose,
   serviceName,
 }) => {
+  const [downloadNotice, setDownloadNotice] = useState(false);
   const playStoreUrl = import.meta.env.VITE_PLAY_STORE_URL || '';
 
-  // Close on ESC key
+  // Close on ESC key & reset state
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      setDownloadNotice(false);
       window.addEventListener('keydown', handleKeyDown);
     }
     return () => {
@@ -33,10 +35,11 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
   if (!isOpen) return null;
 
   const handleDownloadClick = () => {
-    if (playStoreUrl) {
+    // If a specific INDIA P.L. package URL is provided, open it
+    if (playStoreUrl && playStoreUrl !== '#' && playStoreUrl.includes('details?id=')) {
       window.open(playStoreUrl, '_blank', 'noopener,noreferrer');
     } else {
-      alert('The INDIA P.L. Customer Android App is coming soon to the Google Play Store! Stay tuned.');
+      setDownloadNotice(true);
     }
   };
 
@@ -50,7 +53,7 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header decoration */}
-        <div className="bg-gradient-to-r from-[#009E9B] to-[#00827F] p-6 text-white relative">
+        <div className="bg-gradient-to-r from-[#008A8E] to-[#007377] p-6 text-white relative">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors"
@@ -67,13 +70,13 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
               <span className="text-xs font-bold uppercase tracking-wider text-teal-200">
                 Customer Mobile Experience
               </span>
-              <h3 className="text-xl font-extrabold text-white">Download the INDIA P.L. App</h3>
+              <h3 className="text-xl font-extrabold text-white">INDIA P.L. Customer App</h3>
             </div>
           </div>
 
           {serviceName && (
             <div className="mt-3.5 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-xs text-white backdrop-blur-xs border border-white/20">
-              <span>Ready to book: <strong>{serviceName}</strong></span>
+              <span>Selected for booking: <strong>{serviceName}</strong></span>
             </div>
           )}
         </div>
@@ -97,7 +100,7 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
               return (
                 <div key={i} className="p-3 rounded-2xl bg-[#F4FBFB] border border-[#DCEEEB]">
                   <div className="flex items-center gap-2 mb-1">
-                    <Icon className="w-4 h-4 text-[#009E9B]" />
+                    <Icon className="w-4 h-4 text-[#008A8E]" />
                     <h4 className="text-xs font-bold text-[#0B2038]">{f.title}</h4>
                   </div>
                   <p className="text-[11px] text-[#5B738B] leading-tight">{f.desc}</p>
@@ -106,14 +109,26 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
             })}
           </div>
 
+          {/* In-app notice when build is in progress */}
+          {downloadNotice && (
+            <div className="p-4 rounded-2xl bg-teal-50 border border-teal-300 text-teal-900 text-xs font-semibold space-y-1 animate-in fade-in">
+              <p className="font-bold text-[#008A8E] flex items-center gap-1.5">
+                <span>🚀</span> App Release in Progress
+              </p>
+              <p className="text-slate-600">
+                The INDIA P.L. Customer App is in final staging. The official Google Play Store download link will activate automatically once the production release is finalized.
+              </p>
+            </div>
+          )}
+
           {/* CTA Buttons */}
           <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
             <button
               onClick={handleDownloadClick}
-              className="w-full sm:flex-1 py-3.5 px-6 rounded-full bg-[#009E9B] hover:bg-[#008784] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 active:scale-98"
+              className="w-full sm:flex-1 py-3.5 px-6 rounded-full bg-[#008A8E] hover:bg-[#007377] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 active:scale-98"
             >
               <Smartphone className="w-5 h-5" />
-              <span>Get on Google Play</span>
+              <span>Download on Google Play</span>
               <ExternalLink className="w-4 h-4 opacity-75" />
             </button>
             <button
@@ -126,7 +141,7 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({
 
           <div className="text-center">
             <p className="text-[11px] text-[#71879D]">
-              Currently serving Bhubaneswar, Cuttack & expanding across Odisha.
+              Currently serving Bhubaneswar, Cuttack &amp; expanding across Odisha.
             </p>
           </div>
         </div>

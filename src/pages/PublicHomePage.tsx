@@ -22,8 +22,6 @@ export const PublicHomePage: React.FC = () => {
   const [downloadModalOpen, setDownloadModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<string>('');
 
-  const playStoreUrl = import.meta.env.VITE_PLAY_STORE_URL || 'https://play.google.com/store/apps';
-
   const handleOpenDownload = (serviceName?: string) => {
     setSelectedService(serviceName || '');
     setDownloadModalOpen(true);
@@ -31,11 +29,7 @@ export const PublicHomePage: React.FC = () => {
 
   const handleGpsMatchingClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (playStoreUrl && playStoreUrl !== '#') {
-      window.open(playStoreUrl, '_blank', 'noopener,noreferrer');
-    } else {
-      handleOpenDownload('GPS Matching & Booking App');
-    }
+    handleOpenDownload('INDIA P.L. GPS Matching Engine');
   };
 
   const serviceHighlights = [
@@ -78,7 +72,7 @@ export const PublicHomePage: React.FC = () => {
         <div className="absolute bottom-0 left-10 w-80 h-80 bg-cyan-100/35 rounded-full blur-2xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               {/* Trust Tag */}
@@ -87,12 +81,12 @@ export const PublicHomePage: React.FC = () => {
                 <span>Centralized Operations &amp; Workforce Platform</span>
               </div>
 
-              {/* Main Headline: Line 1 dark navy in one line, Line 2 teal in one line */}
+              {/* Main Headline: Line 1 dark navy in one line, Line 2 teal in one line without overlapping */}
               <h1 className="font-extrabold tracking-tight">
-                <span className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[52px] text-[#0B2038] block sm:whitespace-nowrap leading-tight">
+                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-[30px] xl:text-[38px] 2xl:text-[46px] text-[#0B2038] block sm:whitespace-nowrap leading-tight">
                   Manage Customers, Bookings &amp;
                 </span>
-                <span className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[52px] text-[#008A8E] block mt-1 sm:whitespace-nowrap leading-tight">
+                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-[30px] xl:text-[38px] 2xl:text-[46px] text-[#008A8E] block mt-1.5 sm:whitespace-nowrap leading-tight">
                   Service Professionals
                 </span>
               </h1>
@@ -114,16 +108,14 @@ export const PublicHomePage: React.FC = () => {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
-                <a
-                  href={playStoreUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
                   onClick={handleGpsMatchingClick}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-white text-[#0B2038] font-bold text-sm border-2 border-[#DCEEEB] hover:border-teal-400 hover:bg-teal-50/50 transition-all shadow-2xs cursor-pointer active:scale-98"
                 >
                   <Compass className="w-4 h-4 text-[#008A8E]" />
                   <span>How GPS Matching Works</span>
-                </a>
+                </button>
               </div>
 
               {/* 4 Feature Badges: Full text visible with zero truncation (...) */}
@@ -151,19 +143,14 @@ export const PublicHomePage: React.FC = () => {
             </div>
 
             {/* Right-Side Operations Preview Card (Floating, Luminous Lighting & High-Contrast Dark Fonts) */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md animate-gentle-float">
+            <div className="lg:col-span-5 flex justify-center lg:justify-end pt-2 pb-6">
+              <div className="relative w-full max-w-[370px] sm:max-w-md animate-gentle-float">
                 {/* Multi-layered Luminous Lighting Aura */}
-                <div className="absolute -inset-2 rounded-[36px] bg-gradient-to-r from-teal-400/35 via-cyan-300/40 to-teal-500/35 blur-2xl opacity-80 animate-pulse pointer-events-none" />
-                <div className="absolute -inset-0.5 rounded-[30px] bg-gradient-to-br from-teal-300/80 via-transparent to-cyan-300/80 opacity-90 pointer-events-none" />
+                <div className="absolute -inset-2 rounded-[36px] bg-gradient-to-r from-teal-400/30 via-cyan-300/35 to-teal-500/30 blur-2xl opacity-75 pointer-events-none" />
+                <div className="absolute -inset-0.5 rounded-[30px] bg-gradient-to-br from-teal-300/70 via-transparent to-cyan-300/70 opacity-80 pointer-events-none" />
 
                 {/* Floating Preview Card Container */}
-                <div className="relative bg-gradient-to-b from-white via-[#FCFEFE] to-[#F2FAF9] rounded-3xl p-6 border-2 border-teal-300/90 shadow-[0_25px_60px_-15px_rgba(0,138,142,0.35),0_0_30px_rgba(45,212,191,0.25)] space-y-4 z-10 overflow-hidden">
-                  {/* Interior Radial Lighting Reflections */}
-                  <div className="absolute -top-16 -right-16 w-52 h-52 bg-gradient-to-br from-teal-300/30 to-transparent rounded-full blur-2xl pointer-events-none" />
-                  <div className="absolute top-1/2 -left-12 w-40 h-40 bg-gradient-to-tr from-cyan-200/25 to-transparent rounded-full blur-xl pointer-events-none" />
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-teal-300 to-transparent pointer-events-none" />
-
+                <div className="relative bg-gradient-to-b from-white via-[#FCFEFE] to-[#F2FAF9] rounded-3xl p-5 sm:p-6 border-2 border-teal-300/90 shadow-[0_20px_50px_-15px_rgba(0,138,142,0.3),0_0_25px_rgba(45,212,191,0.2)] space-y-3.5 sm:space-y-4 z-10">
                   {/* Top Bar with Official Logo & Location */}
                   <div className="flex items-center justify-between pb-3.5 border-b border-teal-100">
                     <IndiaPLLogo size="sm" />
