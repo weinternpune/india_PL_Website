@@ -28,7 +28,7 @@ export const PublicFooter: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-white tracking-wide">100% Background Verified</h4>
-                <p className="text-[11px] text-slate-400">Aadhaar & Police verified professionals</p>
+                <p className="text-[11px] text-slate-300 font-medium">Aadhaar & Police verified professionals</p>
               </div>
             </div>
 
@@ -38,7 +38,7 @@ export const PublicFooter: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-white tracking-wide">Standardized Quality</h4>
-                <p className="text-[11px] text-slate-400">ISO-grade hygiene standards & equipment</p>
+                <p className="text-[11px] text-slate-300 font-medium">ISO-grade hygiene standards & equipment</p>
               </div>
             </div>
 
@@ -48,7 +48,7 @@ export const PublicFooter: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-white tracking-wide">Safe Doorstep Guarantee</h4>
-                <p className="text-[11px] text-slate-400">Transparent per-session billing</p>
+                <p className="text-[11px] text-slate-300 font-medium">Transparent per-session billing</p>
               </div>
             </div>
           </div>
@@ -205,7 +205,7 @@ export const PublicFooter: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#132A44] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="pt-8 border-t border-[#132A44] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-300 font-medium">
           <p>© {currentYear} INDIA P.L. All rights reserved. Trusted Services. Better Tomorrow.</p>
           <div className="flex items-center space-x-6">
             <a href="#privacy" className="hover:text-teal-400 transition-colors">

@@ -10,6 +10,10 @@ import {
   Worker,
   ChartDay,
   CategoryBreakdownItem,
+  WorkerRating,
+  PayoutRequest,
+  PayoutMetrics,
+  PayoutStatus,
 } from '../types';
 import {
   initialAdminUser,
@@ -19,6 +23,8 @@ import {
   initialNotifications,
   initialServices,
   initialWorkers,
+  initialRatings,
+  initialPayoutRequests,
 } from '../data/mockData';
 import {
   findNearestAvailableWorker,
@@ -55,6 +61,22 @@ interface AppContextType {
   toggleWorkerAvailability: (workerId: string) => void;
   updateWorker: (worker: Worker) => void;
   addNewWorker: (workerData: Partial<Worker>) => Worker;
+
+  // Dynamic Ratings & Reviews
+  ratings: WorkerRating[];
+  getWorkerRatings: (workerId: string) => WorkerRating[];
+  getWorkerRatingStats: (workerId: string) => { averageRating: number; totalReviews: number; formattedRating: string };
+  addWorkerRating: (rating: Omit<WorkerRating, 'id' | 'createdAt'>) => WorkerRating;
+
+  // Worker Payouts System
+  payoutRequests: PayoutRequest[];
+  payoutMetrics: PayoutMetrics;
+  getPayoutRequestById: (id: string) => PayoutRequest | undefined;
+  verifyPayout: (id: string, notes?: string) => void;
+  approvePayout: (id: string, notes?: string) => void;
+  rejectPayout: (id: string, rejectionReason: string) => void;
+  markPayoutPaid: (id: string, transactionReference: string, notes?: string) => void;
+  calculateWorkerEarnings: (workerId: string) => { lifetimeEarnings: number; paidEarnings: number; pendingEarnings: number; availableBalance: number };
 
   // Customers
   customers: Customer[];
@@ -97,6 +119,8 @@ const STORAGE_KEYS = {
   CUSTOMERS: 'india_pl_customers',
   SERVICES: 'india_pl_services',
   NOTIFICATIONS: 'india_pl_notifications',
+  RATINGS: 'india_pl_ratings',
+  PAYOUTS: 'india_pl_payout_requests',
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -132,6 +156,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return saved ? JSON.parse(saved) : initialNotifications;
   });
 
+  const [ratings, setRatings] = useState<WorkerRating[]>(() => {
+    const saved = localStorage.getItem(STORAGE_KEYS.RATINGS);
+    return saved ? JSON.parse(saved) : initialRatings;
+  });
+
+  const [payoutRequests, setPayoutRequests] = useState<PayoutRequest[]>(() => {
+    const saved = localStorage.getItem(STORAGE_KEYS.PAYOUTS);
+    return saved ? JSON.parse(saved) : initialPayoutRequests;
+  });
+
   // Sync with LocalStorage
   useEffect(() => {
     if (adminUser) {
@@ -161,6 +195,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify(notifications));
   }, [notifications]);
 
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.RATINGS, JSON.stringify(ratings));
+  }, [ratings]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.PAYOUTS, JSON.stringify(payoutRequests));
+  }, [payoutRequests]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   // Derived Dynamic Analytics computed in real-time from active dataset
@@ -168,6 +210,35 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const chartDays = computeChartDays(bookings);
   const weeklyTrend = computeWeeklyTrend(bookings);
   const categoryBreakdown = computeCategoryBreakdown(bookings);
+
+  // Derived Payout Metrics computed dynamically
+  const payoutMetrics: PayoutMetrics = React.useMemo(() => {
+    const pendingList = payoutRequests.filter(
+      (p) => p.status === 'Pending' || p.status === 'Under Review'
+    );
+    const totalPendingPayouts = pendingList.reduce((sum, p) => sum + p.requestedAmount, 0);
+    const pendingRequestsCount = pendingList.length;
+
+    const paidList = payoutRequests.filter((p) => p.status === 'Paid');
+    const paidThisMonth = paidList.reduce((sum, p) => sum + p.requestedAmount, 0);
+
+    const workersBaselineEarnings = workers.reduce(
+      (sum, w) => sum + (w.bankDetails?.lifetimeEarnings || 18500),
+      0
+    );
+    const completedBookingsEarnings = bookings
+      .filter((b) => b.status === 'Completed')
+      .reduce((sum, b) => sum + Math.round(b.totalAmount * 0.75), 0);
+
+    const totalWorkerEarnings = workersBaselineEarnings + completedBookingsEarnings;
+
+    return {
+      totalPendingPayouts,
+      pendingRequestsCount,
+      paidThisMonth,
+      totalWorkerEarnings,
+    };
+  }, [payoutRequests, workers, bookings]);
 
   // Sync with remote backend API if configured
   const refreshFromBackend = async () => {
@@ -747,6 +818,184 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setServices((prev) => prev.filter((s) => s.id !== serviceId));
   };
 
+  // Dynamic Worker Rating Methods
+  const getWorkerRatings = (workerId: string): WorkerRating[] => {
+    return ratings.filter((r) => r.workerId === workerId);
+  };
+
+  const getWorkerRatingStats = (workerId: string) => {
+    const list = ratings.filter((r) => r.workerId === workerId);
+    if (!list || list.length === 0) {
+      return {
+        averageRating: 0,
+        totalReviews: 0,
+        formattedRating: 'No ratings yet',
+      };
+    }
+    const sum = list.reduce((acc, r) => acc + r.rating, 0);
+    const avg = Math.round((sum / list.length) * 10) / 10;
+    return {
+      averageRating: avg,
+      totalReviews: list.length,
+      formattedRating: `${avg.toFixed(1)} ★ (${list.length} review${list.length === 1 ? '' : 's'})`,
+    };
+  };
+
+  const addWorkerRating = (ratingData: Omit<WorkerRating, 'id' | 'createdAt'>): WorkerRating => {
+    const newRating: WorkerRating = {
+      ...ratingData,
+      id: `rev_${Date.now()}`,
+      createdAt: new Date().toISOString(),
+    };
+    setRatings((prev) => [newRating, ...prev]);
+
+    // Recalculate and update worker rating in workers state
+    const workerList = ratings.filter((r) => r.workerId === ratingData.workerId).concat(newRating);
+    const sum = workerList.reduce((acc, r) => acc + r.rating, 0);
+    const avg = Math.round((sum / workerList.length) * 10) / 10;
+
+    setWorkers((prev) =>
+      prev.map((w) =>
+        w.workerId === ratingData.workerId
+          ? { ...w, rating: avg, ratingCount: workerList.length }
+          : w
+      )
+    );
+
+    return newRating;
+  };
+
+  // Worker Payouts Management
+  const calculateWorkerEarnings = (workerId: string) => {
+    const worker = workers.find((w) => w.workerId === workerId);
+    const baseline = worker?.bankDetails?.lifetimeEarnings || 16500;
+
+    // Additional earnings from completed bookings
+    const completedBookingEarnings = bookings
+      .filter((b) => b.assignedWorkerId === workerId && b.status === 'Completed')
+      .reduce((sum, b) => sum + Math.round(b.totalAmount * 0.75), 0);
+
+    const lifetimeEarnings = baseline + completedBookingEarnings;
+
+    // Sum paid
+    const paidEarnings = payoutRequests
+      .filter((p) => p.workerId === workerId && p.status === 'Paid')
+      .reduce((sum, p) => sum + p.requestedAmount, 0);
+
+    // Sum pending/under review/approved
+    const pendingEarnings = payoutRequests
+      .filter((p) => p.workerId === workerId && (p.status === 'Pending' || p.status === 'Under Review' || p.status === 'Approved'))
+      .reduce((sum, p) => sum + p.requestedAmount, 0);
+
+    const availableBalance = Math.max(0, lifetimeEarnings - paidEarnings - pendingEarnings);
+
+    return {
+      lifetimeEarnings,
+      paidEarnings,
+      pendingEarnings,
+      availableBalance,
+    };
+  };
+
+  const getPayoutRequestById = (id: string) => {
+    return payoutRequests.find((p) => p.id === id);
+  };
+
+  const verifyPayout = (id: string, notes?: string) => {
+    setPayoutRequests((prev) =>
+      prev.map((p) =>
+        p.id === id
+          ? {
+              ...p,
+              status: 'Under Review' as PayoutStatus,
+              adminNotes: notes || p.adminNotes,
+              updatedAt: new Date().toISOString(),
+            }
+          : p
+      )
+    );
+
+    addNotification({
+      title: 'Payout Under Review',
+      message: `Payout request #${id} marked as Under Review.`,
+      type: 'system',
+      link: '/admin/payouts',
+    });
+  };
+
+  const approvePayout = (id: string, notes?: string) => {
+    const req = payoutRequests.find((p) => p.id === id);
+    if (!req) return;
+
+    setPayoutRequests((prev) =>
+      prev.map((p) =>
+        p.id === id
+          ? {
+              ...p,
+              status: 'Approved' as PayoutStatus,
+              adminNotes: notes || p.adminNotes,
+              updatedAt: new Date().toISOString(),
+            }
+          : p
+      )
+    );
+
+    addNotification({
+      title: 'Payout Approved',
+      message: `Payout of ₹${req.requestedAmount.toLocaleString()} for ${req.workerName} was approved.`,
+      type: 'worker',
+      link: '/admin/payouts',
+    });
+  };
+
+  const rejectPayout = (id: string, rejectionReason: string) => {
+    setPayoutRequests((prev) =>
+      prev.map((p) =>
+        p.id === id
+          ? {
+              ...p,
+              status: 'Rejected' as PayoutStatus,
+              rejectionReason,
+              updatedAt: new Date().toISOString(),
+            }
+          : p
+      )
+    );
+
+    const req = payoutRequests.find((p) => p.id === id);
+    addNotification({
+      title: 'Payout Rejected',
+      message: `Payout request for ${req?.workerName || id} was rejected: ${rejectionReason}`,
+      type: 'system',
+      link: '/admin/payouts',
+    });
+  };
+
+  const markPayoutPaid = (id: string, transactionReference: string, notes?: string) => {
+    setPayoutRequests((prev) =>
+      prev.map((p) =>
+        p.id === id
+          ? {
+              ...p,
+              status: 'Paid' as PayoutStatus,
+              paidAt: new Date().toISOString(),
+              transactionRef: transactionReference,
+              adminNotes: notes || p.adminNotes,
+              updatedAt: new Date().toISOString(),
+            }
+          : p
+      )
+    );
+
+    const req = payoutRequests.find((p) => p.id === id);
+    addNotification({
+      title: 'Payout Disbursed (Paid)',
+      message: `Payout of ₹${req?.requestedAmount.toLocaleString()} successfully transferred to ${req?.workerName}. Ref: ${transactionReference}`,
+      type: 'worker',
+      link: '/admin/payouts',
+    });
+  };
+
   // Reset to default mock data
   const resetData = () => {
     setAdminUser(initialAdminUser);
@@ -755,6 +1004,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setCustomers(initialCustomers);
     setServices(initialServices);
     setNotifications(initialNotifications);
+    setRatings(initialRatings);
+    setPayoutRequests(initialPayoutRequests);
     localStorage.clear();
   };
 
@@ -778,6 +1029,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         toggleWorkerAvailability,
         updateWorker,
         addNewWorker,
+        ratings,
+        getWorkerRatings,
+        getWorkerRatingStats,
+        addWorkerRating,
+        payoutRequests,
+        payoutMetrics,
+        getPayoutRequestById,
+        verifyPayout,
+        approvePayout,
+        rejectPayout,
+        markPayoutPaid,
+        calculateWorkerEarnings,
         customers,
         getCustomerById,
         services,

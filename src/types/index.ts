@@ -46,13 +46,34 @@ export interface WorkerDocument {
   uploadedAt: string;
 }
 
+export interface WorkerRating {
+  id: string;
+  bookingId: string;
+  customerId: string;
+  customerName: string;
+  customerAvatar?: string;
+  workerId: string;
+  rating: number; // 1 to 5
+  review?: string;
+  createdAt: string;
+}
+
+export interface WorkerBankDetails {
+  accountNumber: string;
+  ifscCode: string;
+  bankName: string;
+  accountHolder: string;
+  upiId?: string;
+  lifetimeEarnings?: number;
+}
+
 export interface Worker {
   workerId: string;
   name: string;
   phone: string;
   email: string;
   profileImage: string;
-  services: string[]; // e.g. ["Residential Cleaning", "Deep Cleaning", "Kitchen Cleaning"]
+  services: string[];
   categories: ServiceCategory[];
   latitude: number;
   longitude: number;
@@ -60,14 +81,16 @@ export interface Worker {
   availability: WorkerAvailability;
   status: WorkerStatus;
   verificationStatus: VerificationStatus;
-  rating: number;
-  ratingCount: number;
+  rating: number; // Dynamically calculated: sum(ratings) / count
+  ratingCount: number; // Actual number of customer reviews
+  ratings?: WorkerRating[];
   completedJobs: number;
   cancellationCount: number;
   experienceYears: number;
   documents: WorkerDocument[];
   joinedDate: string;
   recentBookingIds: string[];
+  bankDetails?: WorkerBankDetails;
 }
 
 export interface CustomerAddress {
@@ -154,7 +177,7 @@ export interface Booking {
   assignedWorkerAvatar?: string;
   assignedWorkerRating?: number;
   workerLocation?: { latitude: number; longitude: number };
-  workerDistance?: number; // in kilometers
+  workerDistance?: number;
   status: BookingStatus;
   paymentMethod: 'UPI' | 'Credit / Debit Card' | 'Wallet' | 'Net Banking' | 'Cash on Delivery';
   paymentStatus: 'Paid' | 'Pending' | 'Refunded';
@@ -208,4 +231,54 @@ export interface ReportsData {
   }[];
   categoryBreakdown: CategoryBreakdownItem[];
   metrics: DashboardMetrics;
+}
+
+// Payouts Types
+export type PayoutStatus = 'Pending' | 'Under Review' | 'Approved' | 'Rejected' | 'Paid';
+
+export interface PayoutBookingItem {
+  bookingId: string;
+  serviceName: string;
+  completedDate: string;
+  customerAmount: number;
+  workerEarning: number;
+}
+
+export interface PayoutRequest {
+  id: string; // e.g., 'PO-801'
+  workerId: string;
+  workerName: string;
+  workerPhone: string;
+  workerEmail: string;
+  workerAvatar: string;
+  completedJobs: number;
+  totalEarnings: number;
+  alreadyPaid: number;
+  availableBalance: number;
+  requestedAmount: number;
+  requestedDate: string;
+  paymentMethod: 'UPI' | 'Direct Bank Transfer' | 'IMPS';
+  paymentDetails: {
+    upiId?: string;
+    accountNumber?: string;
+    ifscCode?: string;
+    bankName?: string;
+    accountHolder?: string;
+  };
+  status: PayoutStatus;
+  reviewedAt?: string;
+  reviewedBy?: string;
+  paidAt?: string;
+  rejectionReason?: string;
+  transactionRef?: string;
+  adminNotes?: string;
+  updatedAt?: string;
+  breakdown: PayoutBookingItem[];
+}
+
+export interface PayoutMetrics {
+  totalPendingPayouts: number;
+  pendingRequestsCount: number;
+  paidThisMonth: number;
+  totalWorkerEarnings: number;
 }

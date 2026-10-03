@@ -3,16 +3,11 @@ import { useApp } from '../../context/AppContext';
 import { ServiceItem, ServiceCategory } from '../../types';
 import { ServiceFormModal } from '../../components/modals/ServiceFormModal';
 import {
-  Layers,
   Plus,
   Search,
   Edit2,
   Trash2,
   Clock,
-  IndianRupee,
-  CheckCircle2,
-  XCircle,
-  Sparkles,
 } from 'lucide-react';
 
 export const AdminServicesPage: React.FC = () => {
@@ -64,15 +59,15 @@ export const AdminServicesPage: React.FC = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#0B2038]">Service Catalog Management</h1>
-          <p className="text-xs sm:text-sm text-[#5B738B] mt-0.5">
-            Configure doorstep service offerings, session pricing, and category structures
+          <h1 className="text-2xl font-black text-[#0B2038] tracking-tight">Service Catalog Management</h1>
+          <p className="text-xs sm:text-sm text-slate-800 font-medium mt-0.5">
+            Configure doorstep service offerings, session pricing, and category structures.
           </p>
         </div>
 
         <button
           onClick={handleAddNew}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#009E9B] text-white text-xs font-bold hover:bg-[#00827F] shadow-sm transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#008A8E] text-white text-xs font-bold hover:bg-[#007074] shadow-sm transition-all cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Service</span>
@@ -80,34 +75,34 @@ export const AdminServicesPage: React.FC = () => {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white rounded-3xl p-5 border border-[#DCEEEB] shadow-2xs space-y-4">
+      <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="w-full sm:w-96 relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search services by title or description..."
-              className="w-full pl-10 pr-4 py-2.5 bg-[#F8FCFC] border border-[#D1F0EE] rounded-2xl text-xs font-medium text-[#0B2038] placeholder-slate-400 focus:outline-none focus:border-[#009E9B] focus:bg-white"
+              className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-[#0B2038] placeholder-slate-500 focus:outline-none focus:border-[#008A8E] focus:bg-white"
             />
           </div>
 
-          <span className="text-xs text-[#5B738B] font-semibold">
+          <span className="text-xs text-slate-800 font-bold">
             {filteredServices.length} Services in Catalog
           </span>
         </div>
 
-        {/* Categories Bar matching PDF */}
+        {/* Categories Bar */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setCategoryFilter(cat)}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                 categoryFilter === cat
-                  ? 'bg-[#009E9B] text-white shadow-2xs'
-                  : 'bg-slate-50 text-[#5B738B] hover:bg-teal-50 hover:text-[#009E9B]'
+                  ? 'bg-[#0B2038] text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-800 hover:bg-slate-200 hover:text-[#0B2038]'
               }`}
             >
               {cat}
@@ -121,7 +116,7 @@ export const AdminServicesPage: React.FC = () => {
         {filteredServices.map((service) => (
           <div
             key={service.id}
-            className="bg-white rounded-3xl border border-[#DCEEEB] shadow-2xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group"
+            className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group"
           >
             <div>
               {/* Image & Badges */}
@@ -131,16 +126,16 @@ export const AdminServicesPage: React.FC = () => {
                   alt={service.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 text-[#009E9B] text-[11px] font-bold shadow-xs">
+                <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 text-[#008A8E] text-[11px] font-bold shadow-xs border border-slate-200">
                   {service.category}
                 </span>
 
                 <button
                   onClick={() => handleToggleStatus(service)}
-                  className={`absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold shadow-xs transition-colors ${
+                  className={`absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold shadow-xs transition-colors cursor-pointer ${
                     service.status === 'Active'
-                      ? 'bg-emerald-500 text-white'
-                      : 'bg-slate-500 text-white'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-slate-600 text-white'
                   }`}
                   title="Click to toggle Active / Inactive"
                 >
@@ -151,33 +146,33 @@ export const AdminServicesPage: React.FC = () => {
               {/* Body */}
               <div className="p-5 space-y-3">
                 <div className="flex items-start justify-between gap-2">
-                  <h3 className="text-base font-bold text-[#0B2038] group-hover:text-[#009E9B] transition-colors leading-snug">
+                  <h3 className="text-base font-bold text-[#0B2038] group-hover:text-[#008A8E] transition-colors leading-snug">
                     {service.name}
                   </h3>
                   <div className="text-right shrink-0">
-                    <span className="text-lg font-extrabold text-[#009E9B]">
+                    <span className="text-lg font-black text-[#008A8E]">
                       ₹{service.price}
                     </span>
                     {service.originalPrice && (
-                      <span className="block text-[11px] text-slate-400 line-through">
+                      <span className="block text-[11px] text-slate-500 font-bold line-through">
                         ₹{service.originalPrice}
                       </span>
                     )}
                   </div>
                 </div>
 
-                <p className="text-xs text-[#5B738B] leading-relaxed line-clamp-2">
+                <p className="text-xs text-slate-800 font-medium leading-relaxed line-clamp-2">
                   {service.description}
                 </p>
 
                 {/* Duration */}
-                <div className="flex items-center gap-2 text-xs text-slate-500">
-                  <Clock className="w-3.5 h-3.5 text-[#009E9B]" />
+                <div className="flex items-center gap-2 text-xs text-slate-800 font-semibold">
+                  <Clock className="w-3.5 h-3.5 text-[#008A8E]" />
                   <span>Est. {service.durationMinutes} Minutes Session</span>
                 </div>
 
                 {/* Dates */}
-                <div className="text-[10px] text-slate-400 pt-2 border-t border-slate-100 flex justify-between">
+                <div className="text-[10px] text-slate-700 font-semibold pt-2 border-t border-slate-100 flex justify-between">
                   <span>Created: {new Date(service.createdAt).toLocaleDateString('en-IN')}</span>
                   <span>Updated: {new Date(service.updatedAt).toLocaleDateString('en-IN')}</span>
                 </div>
@@ -185,10 +180,10 @@ export const AdminServicesPage: React.FC = () => {
             </div>
 
             {/* Card Footer CRUD Actions */}
-            <div className="px-5 py-3.5 bg-[#F8FCFC] border-t border-[#DCEEEB] flex items-center justify-between">
+            <div className="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
               <button
                 onClick={() => handleToggleStatus(service)}
-                className="text-xs font-semibold text-slate-500 hover:text-[#0B2038]"
+                className="text-xs font-bold text-slate-800 hover:text-[#0B2038] cursor-pointer"
               >
                 {service.status === 'Active' ? 'Deactivate' : 'Activate'}
               </button>
@@ -196,7 +191,7 @@ export const AdminServicesPage: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handleEdit(service)}
-                  className="px-3 py-1.5 rounded-full bg-white border border-teal-200 text-[#009E9B] hover:bg-teal-50 text-xs font-bold flex items-center gap-1 transition-colors shadow-2xs"
+                  className="px-3 py-1.5 rounded-lg bg-white border border-teal-300 text-[#008A8E] hover:bg-teal-50 text-xs font-bold flex items-center gap-1 transition-colors shadow-xs cursor-pointer"
                 >
                   <Edit2 className="w-3.5 h-3.5" />
                   <span>Edit</span>
@@ -208,7 +203,7 @@ export const AdminServicesPage: React.FC = () => {
                       deleteService(service.id);
                     }
                   }}
-                  className="p-1.5 rounded-full text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                  className="p-1.5 rounded-lg text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
                   title="Delete Service"
                 >
                   <Trash2 className="w-4 h-4" />

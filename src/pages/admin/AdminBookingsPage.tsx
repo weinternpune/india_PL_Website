@@ -1,32 +1,23 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { BookingStatus, Booking } from '../../types';
+import { BookingStatus } from '../../types';
 import { StatusBadge } from '../../components/common/StatusBadge';
 import { GpsDispatchModal } from '../../components/modals/GpsDispatchModal';
-import { NewBookingModal } from '../../components/modals/NewBookingModal';
 import {
-  CalendarCheck2,
   Search,
-  Filter,
-  Plus,
   Compass,
   Eye,
   MapPin,
-  Clock,
-  User,
-  Radio,
-  Download,
 } from 'lucide-react';
 
 export const AdminBookingsPage: React.FC = () => {
-  const { bookings, autoDispatchWorker } = useApp();
+  const { bookings } = useApp();
   const navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('All');
   const [selectedBookingForGps, setSelectedBookingForGps] = useState<string | null>(null);
-  const [isNewBookingModalOpen, setIsNewBookingModalOpen] = useState(false);
 
   const statuses: (BookingStatus | 'All')[] = [
     'All',
@@ -59,40 +50,30 @@ export const AdminBookingsPage: React.FC = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#0B2038]">Customer Bookings</h1>
-          <p className="text-xs sm:text-sm text-[#5B738B] mt-0.5">
-            Monitor, dispatch, and track doorstep service bookings in Bhubaneswar and Odisha
+          <h1 className="text-2xl font-black text-[#0B2038] tracking-tight">Customer Bookings</h1>
+          <p className="text-xs sm:text-sm text-slate-800 font-medium mt-0.5">
+            Monitor, dispatch, and track customer bookings across Bhubaneswar and Odisha.
           </p>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setIsNewBookingModalOpen(true)}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#009E9B] text-white text-xs font-bold hover:bg-[#00827F] shadow-sm transition-all"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Create Booking</span>
-          </button>
         </div>
       </div>
 
       {/* Filters and Search Bar */}
-      <div className="bg-white rounded-3xl p-5 border border-[#DCEEEB] shadow-2xs space-y-4">
+      <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Search Input */}
           <div className="w-full md:w-96 relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search by ID, customer, service, worker..."
-              className="w-full pl-10 pr-4 py-2.5 bg-[#F8FCFC] border border-[#D1F0EE] rounded-2xl text-xs font-medium text-[#0B2038] placeholder-slate-400 focus:outline-none focus:border-[#009E9B] focus:bg-white transition-all"
+              className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-[#0B2038] placeholder-slate-500 focus:outline-none focus:border-[#008A8E] focus:bg-white transition-all"
             />
           </div>
 
           {/* Quick Stats Pill */}
-          <div className="text-xs text-[#5B738B] font-medium flex items-center gap-2">
+          <div className="text-xs text-slate-800 font-bold flex items-center gap-2">
             <span>Showing {filteredBookings.length} of {bookings.length} Bookings</span>
           </div>
         </div>
@@ -103,10 +84,10 @@ export const AdminBookingsPage: React.FC = () => {
             <button
               key={st}
               onClick={() => setStatusFilter(st)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 statusFilter === st
-                  ? 'bg-[#009E9B] text-white shadow-2xs'
-                  : 'bg-slate-50 text-[#5B738B] hover:bg-teal-50 hover:text-[#009E9B]'
+                  ? 'bg-[#0B2038] text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-800 hover:bg-slate-200 hover:text-[#0B2038]'
               }`}
             >
               {st}
@@ -115,12 +96,12 @@ export const AdminBookingsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Bookings Table (Columns strictly matching Part 5 of prompt) */}
-      <div className="bg-white rounded-3xl border border-[#DCEEEB] shadow-2xs overflow-hidden">
+      {/* Bookings Table */}
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="bg-[#F8FCFC] border-b border-[#DCEEEB] text-[#5B738B] font-bold uppercase tracking-wider text-[11px]">
+              <tr className="bg-slate-50 border-b border-slate-200 text-[#0B2038] font-bold uppercase tracking-wider text-[11px]">
                 <th className="py-3.5 pl-6">Booking ID</th>
                 <th className="py-3.5 px-3">Customer</th>
                 <th className="py-3.5 px-3">Service</th>
@@ -137,7 +118,7 @@ export const AdminBookingsPage: React.FC = () => {
             <tbody className="divide-y divide-slate-100">
               {filteredBookings.length === 0 ? (
                 <tr>
-                  <td colSpan={11} className="py-12 text-center text-slate-400">
+                  <td colSpan={11} className="py-12 text-center text-slate-700 font-bold">
                     No bookings found matching current filters.
                   </td>
                 </tr>
@@ -145,12 +126,12 @@ export const AdminBookingsPage: React.FC = () => {
                 filteredBookings.map((b) => (
                   <tr
                     key={b.bookingId}
-                    className="hover:bg-teal-50/20 transition-colors group cursor-pointer"
+                    className="hover:bg-cyan-50/30 transition-colors group cursor-pointer"
                     onClick={() => navigate(`/admin/bookings/${b.bookingId}`)}
                   >
                     {/* Booking ID */}
-                    <td className="py-4 pl-6 font-mono font-bold text-[#0B2038]">
-                      <span className="text-[#009E9B] group-hover:underline">
+                    <td className="py-4 pl-6 font-mono font-bold text-[#008A8E]">
+                      <span className="group-hover:underline">
                         {b.bookingId}
                       </span>
                     </td>
@@ -159,14 +140,14 @@ export const AdminBookingsPage: React.FC = () => {
                     <td className="py-4 px-3" onClick={(e) => e.stopPropagation()}>
                       <Link
                         to={`/admin/customers/${b.customerId}`}
-                        className="flex items-center gap-2 hover:text-[#009E9B]"
+                        className="flex items-center gap-2 hover:text-[#008A8E]"
                       >
                         <img
                           src={b.customerAvatar}
                           alt={b.customerName}
                           className="w-7 h-7 rounded-full object-cover border border-slate-200 shrink-0"
                         />
-                        <span className="font-semibold text-[#0B2038] truncate max-w-[120px]">
+                        <span className="font-bold text-[#0B2038] truncate max-w-[120px]">
                           {b.customerName}
                         </span>
                       </Link>
@@ -174,19 +155,19 @@ export const AdminBookingsPage: React.FC = () => {
 
                     {/* Service */}
                     <td className="py-4 px-3">
-                      <span className="font-medium text-[#0B2038]">{b.serviceName}</span>
+                      <span className="font-bold text-[#0B2038]">{b.serviceName}</span>
                     </td>
 
                     {/* Date */}
-                    <td className="py-4 px-3 text-[#5B738B] whitespace-nowrap">{b.date}</td>
+                    <td className="py-4 px-3 text-slate-800 font-semibold whitespace-nowrap">{b.date}</td>
 
                     {/* Time */}
-                    <td className="py-4 px-3 text-[#5B738B] whitespace-nowrap">{b.timeSlot}</td>
+                    <td className="py-4 px-3 text-slate-800 font-semibold whitespace-nowrap">{b.timeSlot}</td>
 
                     {/* Location */}
-                    <td className="py-4 px-3 text-[#5B738B]">
+                    <td className="py-4 px-3 text-slate-800 font-medium">
                       <div className="flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5 text-[#009E9B] shrink-0" />
+                        <MapPin className="w-3.5 h-3.5 text-[#008A8E] shrink-0" />
                         <span className="truncate max-w-[110px]">
                           {b.customerLocation.city}
                         </span>
@@ -205,23 +186,23 @@ export const AdminBookingsPage: React.FC = () => {
                             alt={b.assignedWorkerName}
                             className="w-6 h-6 rounded-full object-cover border border-teal-200 shrink-0"
                           />
-                          <span className="font-semibold text-[#0B2038] truncate max-w-[100px]">
+                          <span className="font-bold text-[#0B2038] truncate max-w-[100px]">
                             {b.assignedWorkerName}
                           </span>
                         </div>
                       ) : (
-                        <span className="text-slate-400 italic">Not Assigned</span>
+                        <span className="text-slate-500 font-medium italic">Not Assigned</span>
                       )}
                     </td>
 
                     {/* Distance */}
                     <td className="py-4 px-3 whitespace-nowrap">
                       {b.workerDistance !== undefined ? (
-                        <span className="font-bold text-[#009E9B]">
+                        <span className="font-black text-[#008A8E]">
                           {b.workerDistance} km
                         </span>
                       ) : (
-                        <span className="text-slate-400">—</span>
+                        <span className="text-slate-400 font-medium">—</span>
                       )}
                     </td>
 
@@ -231,7 +212,7 @@ export const AdminBookingsPage: React.FC = () => {
                     </td>
 
                     {/* Amount */}
-                    <td className="py-4 px-3 font-extrabold text-[#0B2038] whitespace-nowrap">
+                    <td className="py-4 px-3 font-black text-[#0B2038] whitespace-nowrap">
                       ₹{b.totalAmount}
                     </td>
 
@@ -243,7 +224,7 @@ export const AdminBookingsPage: React.FC = () => {
                       <div className="flex items-center justify-end gap-1.5">
                         <button
                           onClick={() => setSelectedBookingForGps(b.bookingId)}
-                          className="px-2.5 py-1 rounded-lg bg-teal-50 text-[#009E9B] hover:bg-[#009E9B] hover:text-white transition-all font-semibold flex items-center gap-1 text-[11px]"
+                          className="px-2.5 py-1 rounded-lg bg-teal-50 text-[#008A8E] hover:bg-[#008A8E] hover:text-white transition-all font-bold flex items-center gap-1 text-[11px] border border-teal-200 cursor-pointer"
                           title="Trigger Automatic GPS Pro Assignment"
                         >
                           <Compass className="w-3.5 h-3.5" />
@@ -251,7 +232,7 @@ export const AdminBookingsPage: React.FC = () => {
                         </button>
                         <Link
                           to={`/admin/bookings/${b.bookingId}`}
-                          className="p-1.5 text-slate-400 hover:text-[#0B2038] hover:bg-slate-100 rounded-lg transition-colors"
+                          className="p-1.5 text-slate-600 hover:text-[#0B2038] hover:bg-slate-100 rounded-lg transition-colors"
                           title="View Details"
                         >
                           <Eye className="w-4 h-4" />
@@ -272,15 +253,6 @@ export const AdminBookingsPage: React.FC = () => {
           bookingId={selectedBookingForGps}
           isOpen={!!selectedBookingForGps}
           onClose={() => setSelectedBookingForGps(null)}
-        />
-      )}
-
-      {/* New Booking Modal */}
-      {isNewBookingModalOpen && (
-        <NewBookingModal
-          isOpen={isNewBookingModalOpen}
-          onClose={() => setIsNewBookingModalOpen(false)}
-          onCreated={(bookingId) => setSelectedBookingForGps(bookingId)}
         />
       )}
     </div>

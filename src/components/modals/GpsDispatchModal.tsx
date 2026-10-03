@@ -101,14 +101,14 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
                   {booking.bookingId}
                 </span>
               </div>
-              <p className="text-xs text-[#5B738B]">
+              <p className="text-xs text-slate-700 font-medium">
                 Haversine Geographic Matching • Auto-Assignment Engine
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-white text-slate-400 hover:text-[#0B2038] transition-colors"
+            className="p-2 rounded-full hover:bg-white text-slate-600 hover:text-[#0B2038] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -126,14 +126,14 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
                 <h4 className="text-sm font-bold text-[#0B2038]">
                   {booking.customerName} • {booking.serviceName}
                 </h4>
-                <div className="flex items-center gap-1.5 text-xs text-[#5B738B]">
+                <div className="flex items-center gap-1.5 text-xs text-slate-800 font-medium">
                   <MapPin className="w-3.5 h-3.5 text-[#009E9B] shrink-0" />
                   <span>{booking.customerLocation.address}, {booking.customerLocation.city}</span>
                 </div>
               </div>
               <div className="text-right">
                 <StatusBadge status={booking.status} />
-                <div className="mt-1 font-mono text-[11px] text-slate-400">
+                <div className="mt-1 font-mono text-[11px] text-slate-600 font-semibold">
                   {customerLat.toFixed(4)}°N, {customerLng.toFixed(4)}°E
                 </div>
               </div>
@@ -164,10 +164,10 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
                     <h5 className="text-sm font-bold text-[#0B2038]">
                       {booking.assignedWorkerName}
                     </h5>
-                    <div className="flex items-center gap-2 text-xs text-[#5B738B]">
+                    <div className="flex items-center gap-2 text-xs text-slate-700 font-medium">
                       <span>{booking.assignedWorkerPhone}</span>
                       <span>•</span>
-                      <span className="flex items-center text-amber-500">
+                      <span className="flex items-center text-amber-500 font-semibold">
                         <Star className="w-3 h-3 fill-current mr-0.5" />
                         {booking.assignedWorkerRating || 4.8}
                       </span>
@@ -204,7 +204,7 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
                 <AlertTriangle className="w-5 h-5 text-amber-600" />
                 <div className="text-xs">
                   <p className="font-bold text-amber-900">No Professional Assigned Yet</p>
-                  <p className="text-amber-700">Ready for automated nearest worker allocation.</p>
+                  <p className="text-amber-800 font-medium">Ready for automated nearest worker allocation.</p>
                 </div>
               </div>
               <button
@@ -220,7 +220,7 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
 
           {/* Feedback message */}
           {dispatchMessage && (
-            <div className="p-3 text-xs rounded-xl bg-teal-50 border border-teal-200 text-[#00827F] flex items-center gap-2 animate-in fade-in">
+            <div className="p-3 text-xs rounded-xl bg-teal-50 border border-teal-200 text-[#00827F] font-semibold flex items-center gap-2 animate-in fade-in">
               <Navigation className="w-4 h-4 shrink-0 text-[#009E9B]" />
               <span>{dispatchMessage}</span>
             </div>
@@ -232,14 +232,14 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
               <h4 className="text-xs font-bold text-[#0B2038] uppercase tracking-wider">
                 Eligible Verified Pros in Range (Haversine Sorted)
               </h4>
-              <span className="text-xs font-semibold text-[#5B738B]">
+              <span className="text-xs font-semibold text-slate-700">
                 {candidates.length} active pros found
               </span>
             </div>
 
             <div className="divide-y divide-slate-100 border border-[#DCEEEB] rounded-2xl overflow-hidden bg-white">
               {candidates.length === 0 ? (
-                <div className="p-6 text-center text-xs text-slate-400">
+                <div className="p-6 text-center text-xs text-slate-600 font-medium">
                   No active verified workers available for this category right now.
                 </div>
               ) : (
@@ -253,7 +253,7 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <span className="w-5 text-center font-bold text-slate-400">
+                        <span className="w-5 text-center font-bold text-slate-600">
                           #{idx + 1}
                         </span>
                         <img
@@ -270,7 +270,7 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
                               </span>
                             )}
                           </div>
-                          <p className="text-[11px] text-[#5B738B]">{worker.locationName}</p>
+                          <p className="text-[11px] text-slate-700 font-medium">{worker.locationName}</p>
                         </div>
                       </div>
 
@@ -279,7 +279,7 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
                           <span className="font-bold text-[#009E9B] text-sm">
                             {distanceKm} km
                           </span>
-                          <p className="text-[10px] text-slate-400">Haversine</p>
+                          <p className="text-[10px] text-slate-600 font-medium">Haversine</p>
                         </div>
                         <div className="hidden sm:block">
                           <StatusBadge status={worker.availability} type="availability" size="sm" />
@@ -309,7 +309,7 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
                         {log.attemptNumber}
                       </span>
                       <span className="font-bold text-[#0B2038]">{log.workerName}</span>
-                      <span className="text-slate-400">({log.distanceKm} km away)</span>
+                      <span className="text-slate-600 font-medium">({log.distanceKm} km away)</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span
@@ -323,7 +323,7 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
                       >
                         {log.action}
                       </span>
-                      <span className="text-[10px] text-slate-400">{log.timestamp}</span>
+                      <span className="text-[10px] text-slate-600 font-semibold">{log.timestamp}</span>
                     </div>
                   </div>
                 ))}
@@ -336,7 +336,7 @@ export const GpsDispatchModal: React.FC<GpsDispatchModalProps> = ({
         <div className="px-6 py-4 bg-slate-50 border-t border-[#DCEEEB] flex items-center justify-between">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-full border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-white"
+            className="px-4 py-2 rounded-full border border-slate-300 text-xs font-bold text-slate-800 hover:bg-white"
           >
             Close
           </button>
