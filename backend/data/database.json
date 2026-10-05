@@ -1,0 +1,1190 @@
+{
+  "adminUser": {
+    "id": "admin_001",
+    "name": "Priyanka Sahu",
+    "email": "admin@indiapl.com",
+    "role": "Super Admin",
+    "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=256&q=80",
+    "phone": "+91 98765 00001",
+    "password": "admin"
+  },
+  "workers": [
+    {
+      "workerId": "WRK-201",
+      "name": "Ramesh Kumar",
+      "phone": "+91 94370 12345",
+      "email": "ramesh.k@indiapl.pro",
+      "profileImage": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=256&q=80",
+      "services": [
+        "Residential Cleaning",
+        "Deep Cleaning",
+        "Kitchen & Bathroom Sanitization"
+      ],
+      "categories": [
+        "Cleaning"
+      ],
+      "latitude": 20.3015,
+      "longitude": 85.8245,
+      "locationName": "Patia, Bhubaneswar",
+      "availability": "Available",
+      "status": "Active",
+      "verificationStatus": "Verified",
+      "rating": 4.8,
+      "ratingCount": 38,
+      "completedJobs": 142,
+      "cancellationCount": 2,
+      "experienceYears": 4,
+      "documents": [
+        {
+          "id": "DOC-01",
+          "name": "Aadhaar Card",
+          "type": "Aadhaar Card",
+          "documentNumber": "XXXX-XXXX-8921",
+          "verified": true,
+          "uploadedAt": "2026-08-15"
+        },
+        {
+          "id": "DOC-02",
+          "name": "Police Verification",
+          "type": "Police Clearance",
+          "documentNumber": "POL-BBS-2026-88",
+          "verified": true,
+          "uploadedAt": "2026-08-18"
+        }
+      ],
+      "joinedDate": "2026-08-15",
+      "recentBookingIds": [
+        "#1001",
+        "#1006"
+      ],
+      "bankDetails": {
+        "accountNumber": "XXXX-XXXX-1234",
+        "ifscCode": "HDFC0001234",
+        "bankName": "HDFC Bank Patia",
+        "accountHolder": "Ramesh Kumar",
+        "upiId": "ramesh.kumar@okhdfcbank",
+        "lifetimeEarnings": 18900
+      }
+    },
+    {
+      "workerId": "WRK-202",
+      "name": "Rahul Kumar",
+      "phone": "+91 94371 88442",
+      "email": "rahul.k@indiapl.pro",
+      "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80",
+      "services": [
+        "Residential Cleaning",
+        "Kitchen & Bathroom Sanitization"
+      ],
+      "categories": [
+        "Cleaning"
+      ],
+      "latitude": 20.2989,
+      "longitude": 85.8312,
+      "locationName": "Chandrasekharpur, Bhubaneswar",
+      "availability": "Available",
+      "status": "Active",
+      "verificationStatus": "Verified",
+      "rating": 4.7,
+      "ratingCount": 29,
+      "completedJobs": 98,
+      "cancellationCount": 1,
+      "experienceYears": 3,
+      "documents": [
+        {
+          "id": "DOC-03",
+          "name": "Aadhaar Card",
+          "type": "Aadhaar Card",
+          "documentNumber": "XXXX-XXXX-4412",
+          "verified": true,
+          "uploadedAt": "2026-07-10"
+        }
+      ],
+      "joinedDate": "2026-07-10",
+      "recentBookingIds": [
+        "#1002"
+      ],
+      "bankDetails": {
+        "accountNumber": "XXXX-XXXX-8892",
+        "ifscCode": "HDFC0002345",
+        "bankName": "HDFC Bank",
+        "accountHolder": "Rahul Kumar",
+        "upiId": "rahul.k@paytm",
+        "lifetimeEarnings": 16500
+      }
+    },
+    {
+      "workerId": "WRK-203",
+      "name": "Sunita Jena",
+      "phone": "+91 94372 99001",
+      "email": "sunita.j@indiapl.pro",
+      "profileImage": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80",
+      "services": [
+        "Residential Cleaning",
+        "Housekeeping & Manpower",
+        "Deep Cleaning"
+      ],
+      "categories": [
+        "Cleaning",
+        "Household Help"
+      ],
+      "latitude": 20.2855,
+      "longitude": 85.845,
+      "locationName": "Saheed Nagar, Bhubaneswar",
+      "availability": "Busy",
+      "status": "Active",
+      "verificationStatus": "Verified",
+      "rating": 4.9,
+      "ratingCount": 52,
+      "completedJobs": 178,
+      "cancellationCount": 0,
+      "experienceYears": 5,
+      "documents": [
+        {
+          "id": "DOC-04",
+          "name": "Aadhaar Card",
+          "type": "Aadhaar Card",
+          "documentNumber": "XXXX-XXXX-9901",
+          "verified": true,
+          "uploadedAt": "2026-06-01"
+        },
+        {
+          "id": "DOC-05",
+          "name": "Skill Certificate (NSDC)",
+          "type": "Skill Certificate",
+          "documentNumber": "NSDC-HS-2025-992",
+          "verified": true,
+          "uploadedAt": "2026-06-05"
+        }
+      ],
+      "joinedDate": "2026-06-01",
+      "recentBookingIds": [
+        "#1003"
+      ],
+      "bankDetails": {
+        "accountNumber": "XXXX-XXXX-5561",
+        "ifscCode": "SBIN0001004",
+        "bankName": "State Bank of India",
+        "accountHolder": "Sunita Jena",
+        "upiId": "sunita.jena@ibl",
+        "lifetimeEarnings": 16500
+      }
+    },
+    {
+      "workerId": "WRK-204",
+      "name": "Deepak Mohanty",
+      "phone": "+91 94373 77112",
+      "email": "deepak.m@indiapl.pro",
+      "profileImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80",
+      "services": [
+        "Commercial & Office Cleaning",
+        "Deep Cleaning"
+      ],
+      "categories": [
+        "Cleaning"
+      ],
+      "latitude": 20.312,
+      "longitude": 85.818,
+      "locationName": "Infocity, Bhubaneswar",
+      "availability": "Available",
+      "status": "Active",
+      "verificationStatus": "Verified",
+      "rating": 4.6,
+      "ratingCount": 21,
+      "completedJobs": 85,
+      "cancellationCount": 3,
+      "experienceYears": 2,
+      "documents": [
+        {
+          "id": "DOC-06",
+          "name": "Aadhaar Card",
+          "type": "Aadhaar Card",
+          "documentNumber": "XXXX-XXXX-7112",
+          "verified": true,
+          "uploadedAt": "2026-08-20"
+        }
+      ],
+      "joinedDate": "2026-08-20",
+      "recentBookingIds": [
+        "#1004"
+      ],
+      "bankDetails": {
+        "accountNumber": "XXXX-XXXX-7721",
+        "ifscCode": "ICIC0000889",
+        "bankName": "ICICI Bank",
+        "accountHolder": "Deepak Mohanty",
+        "upiId": "deepak.m@upi",
+        "lifetimeEarnings": 16500
+      }
+    },
+    {
+      "workerId": "WRK-205",
+      "name": "Manoj Swain",
+      "phone": "+91 94374 55663",
+      "email": "manoj.s@indiapl.pro",
+      "profileImage": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=256&q=80",
+      "services": [
+        "Technician & Appliance Repair",
+        "Residential Cleaning"
+      ],
+      "categories": [
+        "Technician",
+        "Repair",
+        "Cleaning"
+      ],
+      "latitude": 20.265,
+      "longitude": 85.839,
+      "locationName": "Bapuji Nagar, Bhubaneswar",
+      "availability": "Offline",
+      "status": "Active",
+      "verificationStatus": "Verified",
+      "rating": 4.8,
+      "ratingCount": 34,
+      "completedJobs": 112,
+      "cancellationCount": 1,
+      "experienceYears": 4,
+      "documents": [
+        {
+          "id": "DOC-07",
+          "name": "Aadhaar Card",
+          "type": "Aadhaar Card",
+          "documentNumber": "XXXX-XXXX-5563",
+          "verified": true,
+          "uploadedAt": "2026-07-22"
+        }
+      ],
+      "joinedDate": "2026-07-22",
+      "recentBookingIds": [
+        "#1005"
+      ],
+      "bankDetails": {
+        "accountNumber": "XXXX-XXXX-9123",
+        "ifscCode": "BARB0BAPUJI",
+        "bankName": "Bank of Baroda",
+        "accountHolder": "Manoj Swain",
+        "lifetimeEarnings": 19787
+      }
+    },
+    {
+      "workerId": "WRK-206",
+      "name": "Priyabrata Nayak",
+      "phone": "+91 94375 22334",
+      "email": "priyabrata.n@indiapl.pro",
+      "profileImage": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=256&q=80",
+      "services": [
+        "Housekeeping & Manpower",
+        "Residential Cleaning"
+      ],
+      "categories": [
+        "Household Help",
+        "Manpower",
+        "Cleaning"
+      ],
+      "latitude": 20.292,
+      "longitude": 85.852,
+      "locationName": "Nayapalli, Bhubaneswar",
+      "availability": "Offline",
+      "status": "Pending Verification",
+      "verificationStatus": "Pending",
+      "rating": 0,
+      "ratingCount": 0,
+      "completedJobs": 0,
+      "cancellationCount": 0,
+      "experienceYears": 1,
+      "documents": [
+        {
+          "id": "DOC-08",
+          "name": "Aadhaar Card",
+          "type": "Aadhaar Card",
+          "documentNumber": "XXXX-XXXX-2234",
+          "verified": false,
+          "uploadedAt": "2026-10-02"
+        }
+      ],
+      "joinedDate": "2026-10-02",
+      "recentBookingIds": []
+    }
+  ],
+  "customers": [
+    {
+      "customerId": "CUST-101",
+      "name": "Ananya Pattnaik",
+      "phone": "+91 98610 11223",
+      "email": "ananya.p@gmail.com",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=256&q=80",
+      "isPremium": true,
+      "location": "Patia, Bhubaneswar",
+      "addresses": [
+        {
+          "id": "ADDR-01",
+          "label": "Home",
+          "addressLine": "Flat 402, Royal Palms, Kalarahanga",
+          "city": "Bhubaneswar",
+          "state": "Odisha",
+          "pincode": "751024",
+          "isDefault": true,
+          "latitude": 20.318,
+          "longitude": 85.827
+        }
+      ],
+      "totalBookings": 8,
+      "completedBookings": 7,
+      "cancelledBookings": 1,
+      "totalSpent": 4250,
+      "status": "Active",
+      "joinDate": "2026-05-12"
+    },
+    {
+      "customerId": "CUST-102",
+      "name": "Siddharth Mishra",
+      "phone": "+91 97760 33445",
+      "email": "siddharth.m@techcorp.in",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=256&q=80",
+      "isPremium": false,
+      "location": "Infocity, Bhubaneswar",
+      "addresses": [
+        {
+          "id": "ADDR-02",
+          "label": "Office",
+          "addressLine": "DLF Cybercity, Tower C, 6th Floor",
+          "city": "Bhubaneswar",
+          "state": "Odisha",
+          "pincode": "751024",
+          "isDefault": true,
+          "latitude": 20.315,
+          "longitude": 85.819
+        }
+      ],
+      "totalBookings": 4,
+      "completedBookings": 4,
+      "cancelledBookings": 0,
+      "totalSpent": 3996,
+      "status": "Active",
+      "joinDate": "2026-07-20"
+    },
+    {
+      "customerId": "CUST-103",
+      "name": "Debashree Tripathy",
+      "phone": "+91 94380 55667",
+      "email": "debashree.t@outlook.com",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+      "isPremium": true,
+      "location": "Saheed Nagar, Bhubaneswar",
+      "addresses": [
+        {
+          "id": "ADDR-03",
+          "label": "Home",
+          "addressLine": "Plot 124/B, Saheed Nagar",
+          "city": "Bhubaneswar",
+          "state": "Odisha",
+          "pincode": "751007",
+          "isDefault": true,
+          "latitude": 20.286,
+          "longitude": 85.844
+        }
+      ],
+      "totalBookings": 12,
+      "completedBookings": 12,
+      "cancelledBookings": 0,
+      "totalSpent": 6890,
+      "status": "Active",
+      "joinDate": "2026-03-10"
+    },
+    {
+      "customerId": "CUST-104",
+      "name": "Pradeep Das",
+      "phone": "+91 99370 77889",
+      "email": "pradeep.das@gmail.com",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80",
+      "isPremium": false,
+      "location": "Nayapalli, Bhubaneswar",
+      "addresses": [
+        {
+          "id": "ADDR-04",
+          "label": "Home",
+          "addressLine": "IRC Village, Block 4, Nayapalli",
+          "city": "Bhubaneswar",
+          "state": "Odisha",
+          "pincode": "751015",
+          "isDefault": true,
+          "latitude": 20.295,
+          "longitude": 85.82
+        }
+      ],
+      "totalBookings": 3,
+      "completedBookings": 2,
+      "cancelledBookings": 1,
+      "totalSpent": 1240,
+      "status": "Active",
+      "joinDate": "2026-08-01"
+    },
+    {
+      "customerId": "CUST-105",
+      "name": "Sneha Mohapatra",
+      "phone": "+91 98530 99001",
+      "email": "sneha.m@yahoo.com",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=256&q=80",
+      "isPremium": false,
+      "location": "Jayadev Vihar, Bhubaneswar",
+      "addresses": [
+        {
+          "id": "ADDR-05",
+          "label": "Home",
+          "addressLine": "Fortune Tower Enclave, Jayadev Vihar",
+          "city": "Bhubaneswar",
+          "state": "Odisha",
+          "pincode": "751023",
+          "isDefault": true,
+          "latitude": 20.301,
+          "longitude": 85.822
+        }
+      ],
+      "totalBookings": 5,
+      "completedBookings": 5,
+      "cancelledBookings": 0,
+      "totalSpent": 2840,
+      "status": "Active",
+      "joinDate": "2026-06-15"
+    }
+  ],
+  "services": [
+    {
+      "id": "SRV-01",
+      "name": "Residential Cleaning",
+      "category": "Cleaning",
+      "description": "Clean Homes • Fresh Spaces • Happier Living. Standardized deep room sanitization and dusting.",
+      "price": 297,
+      "originalPrice": 499,
+      "durationMinutes": 180,
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80",
+      "includedItems": [
+        "Floor vacuum & mop",
+        "Dusting of all surfaces",
+        "Waste removal & bag replacement"
+      ],
+      "features": [
+        "ISO-grade chemicals",
+        "Eco-friendly solutions",
+        "Uniformed & trained pros"
+      ],
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-10-01T00:00:00Z"
+    },
+    {
+      "id": "SRV-02",
+      "name": "Commercial & Office Cleaning",
+      "category": "Cleaning",
+      "description": "Clean Workspaces • Better Productivity. Disinfection of workstations, cabins, and cafeterias.",
+      "price": 999,
+      "originalPrice": 1499,
+      "durationMinutes": 240,
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80",
+      "includedItems": [
+        "Workstation wipe down",
+        "Glass partition cleaning",
+        "Restroom sanitation",
+        "Trash disposal"
+      ],
+      "features": [
+        "After-hours flexibility",
+        "Enterprise invoice support",
+        "High-density coverage"
+      ],
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-10-01T00:00:00Z"
+    },
+    {
+      "id": "SRV-03",
+      "name": "Deep Cleaning",
+      "category": "Cleaning",
+      "description": "Detailed Cleaning • Healthier Environment. Intensive scrubbing, hard water scale removal, and balcony washing.",
+      "price": 448,
+      "originalPrice": 699,
+      "durationMinutes": 240,
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=600&q=80",
+      "includedItems": [
+        "Under-furniture vacuuming",
+        "Kitchen chimney de-greasing",
+        "Ceiling fan & light cleaning"
+      ],
+      "features": [
+        "High-pressure scrubbers",
+        "Anti-fungal spray treatment"
+      ],
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-10-01T00:00:00Z"
+    },
+    {
+      "id": "SRV-04",
+      "name": "Kitchen & Bathroom Sanitization",
+      "category": "Cleaning",
+      "description": "Anti-bacterial tile descaling & platform degreasing with hospital-grade sanitizers.",
+      "price": 149,
+      "originalPrice": 249,
+      "durationMinutes": 90,
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&w=600&q=80",
+      "includedItems": [
+        "Toilet bowl descaling",
+        "Washbasin & mirror polish",
+        "Floor tile scrubbing"
+      ],
+      "features": [
+        "Germicidal protection",
+        "Odor neutralization"
+      ],
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-10-01T00:00:00Z"
+    },
+    {
+      "id": "SRV-05",
+      "name": "Technician & Appliance Repair",
+      "category": "Technician",
+      "description": "AC maintenance, plumbing, electrical switchboards, and home appliance fixes.",
+      "price": 349,
+      "originalPrice": 499,
+      "durationMinutes": 120,
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
+      "includedItems": [
+        "Diagnostics check",
+        "Basic servicing & filter cleaning",
+        "30-day post-service warranty"
+      ],
+      "features": [
+        "Certified technicians",
+        "Genuine spare parts assistance"
+      ],
+      "createdAt": "2026-02-15T00:00:00Z",
+      "updatedAt": "2026-10-01T00:00:00Z"
+    },
+    {
+      "id": "SRV-06",
+      "name": "Housekeeping & Manpower",
+      "category": "Household Help",
+      "description": "Reliable doorstep helpers for shifting, organizing, and daily domestic care.",
+      "price": 399,
+      "originalPrice": 599,
+      "durationMinutes": 240,
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+      "includedItems": [
+        "Furniture relocation support",
+        "Wardrobe organizing",
+        "Package handling"
+      ],
+      "features": [
+        "Verified IDs",
+        "Careful luggage & item handling"
+      ],
+      "createdAt": "2026-03-01T00:00:00Z",
+      "updatedAt": "2026-10-01T00:00:00Z"
+    }
+  ],
+  "bookings": [
+    {
+      "bookingId": "#1005",
+      "customerId": "CUST-105",
+      "customerName": "Sneha Mohapatra",
+      "customerPhone": "+91 98530 99001",
+      "customerEmail": "sneha.m@yahoo.com",
+      "customerAvatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=256&q=80",
+      "serviceId": "SRV-05",
+      "serviceName": "Technician & Appliance Repair",
+      "serviceCategory": "Technician",
+      "selectedServices": [
+        {
+          "name": "Split AC Deep Servicing",
+          "price": 349
+        }
+      ],
+      "customerLocation": {
+        "latitude": 20.301,
+        "longitude": 85.822,
+        "address": "Fortune Tower Enclave, Jayadev Vihar",
+        "city": "Bhubaneswar",
+        "state": "Odisha",
+        "pincode": "751023"
+      },
+      "date": "Tomorrow, 06 Oct 2026",
+      "timeSlot": "10:00 AM - 12:00 PM",
+      "estimatedDuration": "2 Hours",
+      "subtotal": 349,
+      "convenienceFee": 25,
+      "totalAmount": 374,
+      "assignedWorkerId": "WRK-205",
+      "assignedWorkerName": "Manoj Swain",
+      "assignedWorkerPhone": "+91 94374 55663",
+      "assignedWorkerAvatar": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=256&q=80",
+      "assignedWorkerRating": 4.8,
+      "workerDistance": 3.1,
+      "status": "Worker Notified",
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending",
+      "history": [
+        {
+          "status": "Pending",
+          "timestamp": "05 Oct 2026, 04:00 PM",
+          "note": "Customer scheduled for tomorrow"
+        },
+        {
+          "status": "Worker Notified",
+          "timestamp": "05 Oct 2026, 04:05 PM",
+          "note": "Notified pro Manoj Swain"
+        }
+      ],
+      "dispatchLog": [
+        {
+          "attemptNumber": 1,
+          "workerId": "WRK-205",
+          "workerName": "Manoj Swain",
+          "distanceKm": 3.1,
+          "action": "Notified",
+          "timestamp": "05 Oct 2026, 04:05 PM"
+        }
+      ],
+      "createdAt": "2026-10-05T10:30:00.000Z",
+      "updatedAt": "2026-10-05T10:35:00.000Z"
+    },
+    {
+      "bookingId": "#1004",
+      "customerId": "CUST-104",
+      "customerName": "Pradeep Das",
+      "customerPhone": "+91 99370 77889",
+      "customerEmail": "pradeep.das@gmail.com",
+      "customerAvatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80",
+      "serviceId": "SRV-03",
+      "serviceName": "Deep Cleaning",
+      "serviceCategory": "Cleaning",
+      "selectedServices": [
+        {
+          "name": "Deep Cleaning Standard",
+          "price": 448
+        }
+      ],
+      "customerLocation": {
+        "latitude": 20.295,
+        "longitude": 85.82,
+        "address": "IRC Village, Block 4, Nayapalli",
+        "city": "Bhubaneswar",
+        "state": "Odisha",
+        "pincode": "751015"
+      },
+      "date": "Today, 05 Oct 2026",
+      "timeSlot": "04:00 PM - 08:00 PM",
+      "estimatedDuration": "4 Hours",
+      "subtotal": 448,
+      "convenienceFee": 29,
+      "totalAmount": 477,
+      "status": "Worker Notified",
+      "paymentMethod": "UPI",
+      "paymentStatus": "Pending",
+      "history": [
+        {
+          "status": "Pending",
+          "timestamp": "05 Oct 2026, 03:30 PM",
+          "note": "Booking registered"
+        },
+        {
+          "status": "Finding Worker",
+          "timestamp": "05 Oct 2026, 03:32 PM",
+          "note": "Scanning Bhubaneswar GPS hub"
+        },
+        {
+          "status": "Worker Notified",
+          "timestamp": "05 Oct 2026, 11:23 am",
+          "note": "Automated Haversine match: Assigned to Ramesh Kumar (0.9 km away)"
+        }
+      ],
+      "dispatchLog": [
+        {
+          "attemptNumber": 1,
+          "workerId": "WRK-201",
+          "workerName": "Ramesh Kumar",
+          "distanceKm": 0.9,
+          "action": "Notified",
+          "timestamp": "05 Oct 2026, 11:23 am"
+        }
+      ],
+      "createdAt": "2026-10-05T10:00:00.000Z",
+      "updatedAt": "2026-10-05T05:53:56.905Z",
+      "assignedWorkerId": "WRK-201",
+      "assignedWorkerName": "Ramesh Kumar",
+      "assignedWorkerPhone": "+91 94370 12345",
+      "assignedWorkerAvatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=256&q=80",
+      "assignedWorkerRating": 4.8,
+      "workerDistance": 0.9
+    },
+    {
+      "bookingId": "#1002",
+      "customerId": "CUST-102",
+      "customerName": "Siddharth Mishra",
+      "customerPhone": "+91 97760 33445",
+      "customerEmail": "siddharth.m@techcorp.in",
+      "customerAvatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=256&q=80",
+      "serviceId": "SRV-02",
+      "serviceName": "Commercial & Office Cleaning",
+      "serviceCategory": "Cleaning",
+      "selectedServices": [
+        {
+          "name": "Office Floor Sanitization",
+          "price": 999,
+          "session": "Afternoon 2:00 PM"
+        }
+      ],
+      "customerLocation": {
+        "latitude": 20.315,
+        "longitude": 85.819,
+        "address": "DLF Cybercity, Tower C, 6th Floor",
+        "city": "Bhubaneswar",
+        "state": "Odisha",
+        "pincode": "751024"
+      },
+      "date": "Today, 05 Oct 2026",
+      "timeSlot": "02:00 PM - 06:00 PM",
+      "estimatedDuration": "4 Hours",
+      "subtotal": 999,
+      "convenienceFee": 49,
+      "totalAmount": 1048,
+      "assignedWorkerId": "WRK-204",
+      "assignedWorkerName": "Deepak Mohanty",
+      "assignedWorkerPhone": "+91 94373 77112",
+      "assignedWorkerAvatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80",
+      "assignedWorkerRating": 4.6,
+      "workerDistance": 1.1,
+      "status": "In Progress",
+      "paymentMethod": "Credit / Debit Card",
+      "paymentStatus": "Paid",
+      "history": [
+        {
+          "status": "Pending",
+          "timestamp": "05 Oct 2026, 01:15 PM",
+          "note": "Booking registered"
+        },
+        {
+          "status": "Accepted",
+          "timestamp": "05 Oct 2026, 01:25 PM",
+          "note": "Deepak Mohanty confirmed arrival"
+        },
+        {
+          "status": "In Progress",
+          "timestamp": "05 Oct 2026, 02:05 PM",
+          "note": "Pro started office deep cleaning"
+        }
+      ],
+      "dispatchLog": [
+        {
+          "attemptNumber": 1,
+          "workerId": "WRK-204",
+          "workerName": "Deepak Mohanty",
+          "distanceKm": 1.1,
+          "action": "Accepted",
+          "timestamp": "05 Oct 2026, 01:25 PM"
+        }
+      ],
+      "createdAt": "2026-10-05T07:45:00.000Z",
+      "updatedAt": "2026-10-05T08:35:00.000Z"
+    },
+    {
+      "bookingId": "#1001",
+      "customerId": "CUST-101",
+      "customerName": "Ananya Pattnaik",
+      "customerPhone": "+91 98610 11223",
+      "customerEmail": "ananya.p@gmail.com",
+      "customerAvatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=256&q=80",
+      "serviceId": "SRV-01",
+      "serviceName": "Residential Cleaning",
+      "serviceCategory": "Cleaning",
+      "selectedServices": [
+        {
+          "name": "Residential Cleaning Standard",
+          "price": 297,
+          "session": "Morning 9:00 AM"
+        }
+      ],
+      "customerLocation": {
+        "latitude": 20.318,
+        "longitude": 85.827,
+        "address": "Flat 402, Royal Palms, Kalarahanga",
+        "city": "Bhubaneswar",
+        "state": "Odisha",
+        "pincode": "751024"
+      },
+      "date": "Today, 05 Oct 2026",
+      "timeSlot": "09:30 AM - 12:30 PM",
+      "estimatedDuration": "3 Hours",
+      "subtotal": 297,
+      "convenienceFee": 19,
+      "totalAmount": 316,
+      "assignedWorkerId": "WRK-201",
+      "assignedWorkerName": "Ramesh Kumar",
+      "assignedWorkerPhone": "+91 94370 12345",
+      "assignedWorkerAvatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=256&q=80",
+      "assignedWorkerRating": 4.8,
+      "workerDistance": 2.3,
+      "status": "Accepted",
+      "paymentMethod": "UPI",
+      "paymentStatus": "Paid",
+      "history": [
+        {
+          "status": "Pending",
+          "timestamp": "05 Oct 2026, 09:00 AM",
+          "note": "Customer placed booking from India PL App"
+        },
+        {
+          "status": "Finding Worker",
+          "timestamp": "05 Oct 2026, 09:02 AM",
+          "note": "Haversine matching evaluated 4 nearby pros"
+        },
+        {
+          "status": "Worker Notified",
+          "timestamp": "05 Oct 2026, 09:03 AM",
+          "note": "Dispatched to nearest pro Ramesh Kumar (2.3 km)"
+        },
+        {
+          "status": "Accepted",
+          "timestamp": "05 Oct 2026, 09:05 AM",
+          "note": "Pro accepted booking"
+        }
+      ],
+      "dispatchLog": [
+        {
+          "attemptNumber": 1,
+          "workerId": "WRK-201",
+          "workerName": "Ramesh Kumar",
+          "distanceKm": 2.3,
+          "action": "Accepted",
+          "timestamp": "05 Oct 2026, 09:05 AM"
+        }
+      ],
+      "createdAt": "2026-10-05T03:30:00.000Z",
+      "updatedAt": "2026-10-05T03:35:00.000Z"
+    },
+    {
+      "bookingId": "#1003",
+      "customerId": "CUST-103",
+      "customerName": "Debashree Tripathy",
+      "customerPhone": "+91 94380 55667",
+      "customerEmail": "debashree.t@outlook.com",
+      "customerAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+      "serviceId": "SRV-04",
+      "serviceName": "Kitchen & Bathroom Sanitization",
+      "serviceCategory": "Cleaning",
+      "selectedServices": [
+        {
+          "name": "Kitchen & Bathroom Sanitization",
+          "price": 149
+        }
+      ],
+      "customerLocation": {
+        "latitude": 20.286,
+        "longitude": 85.844,
+        "address": "Plot 124/B, Saheed Nagar",
+        "city": "Bhubaneswar",
+        "state": "Odisha",
+        "pincode": "751007"
+      },
+      "date": "Yesterday, 04 Oct 2026",
+      "timeSlot": "11:00 AM - 12:30 PM",
+      "estimatedDuration": "1.5 Hours",
+      "subtotal": 149,
+      "convenienceFee": 19,
+      "totalAmount": 168,
+      "assignedWorkerId": "WRK-203",
+      "assignedWorkerName": "Sunita Jena",
+      "assignedWorkerPhone": "+91 94372 99001",
+      "assignedWorkerAvatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80",
+      "assignedWorkerRating": 4.9,
+      "workerDistance": 0.8,
+      "status": "Completed",
+      "paymentMethod": "UPI",
+      "paymentStatus": "Paid",
+      "history": [
+        {
+          "status": "Pending",
+          "timestamp": "04 Oct 2026, 10:15 AM",
+          "note": "Booking received"
+        },
+        {
+          "status": "Accepted",
+          "timestamp": "04 Oct 2026, 10:20 AM",
+          "note": "Sunita Jena accepted"
+        },
+        {
+          "status": "Completed",
+          "timestamp": "04 Oct 2026, 12:30 PM",
+          "note": "Service successfully finished"
+        }
+      ],
+      "dispatchLog": [
+        {
+          "attemptNumber": 1,
+          "workerId": "WRK-203",
+          "workerName": "Sunita Jena",
+          "distanceKm": 0.8,
+          "action": "Accepted",
+          "timestamp": "04 Oct 2026, 10:20 AM"
+        }
+      ],
+      "createdAt": "2026-10-04T04:45:00.000Z",
+      "updatedAt": "2026-10-04T07:00:00.000Z"
+    }
+  ],
+  "ratings": [
+    {
+      "id": "RAT-01",
+      "bookingId": "#1001",
+      "customerId": "CUST-101",
+      "customerName": "Ananya Pattnaik",
+      "customerAvatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=256&q=80",
+      "workerId": "WRK-201",
+      "rating": 5,
+      "review": "Ramesh was on time, very courteous, and did a thorough job cleaning our 3BHK flat in Patia. Excellent service!",
+      "createdAt": "2026-10-01T14:30:00Z"
+    },
+    {
+      "id": "RAT-02",
+      "bookingId": "#1003",
+      "customerId": "CUST-103",
+      "customerName": "Debashree Tripathy",
+      "customerAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+      "workerId": "WRK-203",
+      "rating": 5,
+      "review": "Sunita did an exceptional job sanitizing our bathrooms. Super clean and hygienic.",
+      "createdAt": "2026-10-04T13:00:00Z"
+    },
+    {
+      "id": "RAT-03",
+      "bookingId": "#1002",
+      "customerId": "CUST-102",
+      "customerName": "Siddharth Mishra",
+      "customerAvatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=256&q=80",
+      "workerId": "WRK-204",
+      "rating": 4,
+      "review": "Deepak handled our office deep cleaning professionally. Recommended.",
+      "createdAt": "2026-09-30T17:00:00Z"
+    }
+  ],
+  "payoutRequests": [
+    {
+      "id": "PO-801",
+      "workerId": "WRK-202",
+      "workerName": "Rahul Kumar",
+      "workerPhone": "+91 94371 88442",
+      "workerEmail": "rahul.k@indiapl.pro",
+      "workerAvatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80",
+      "completedJobs": 18,
+      "totalEarnings": 6450,
+      "alreadyPaid": 4800,
+      "availableBalance": 1650,
+      "requestedAmount": 1200,
+      "requestedDate": "2026-10-02T10:15:00Z",
+      "paymentMethod": "UPI",
+      "paymentDetails": {
+        "upiId": "rahul.k@paytm",
+        "bankName": "HDFC Bank",
+        "accountNumber": "XXXX-XXXX-8892",
+        "ifscCode": "HDFC0002345",
+        "accountHolder": "Rahul Kumar"
+      },
+      "status": "Pending",
+      "breakdown": [
+        {
+          "bookingId": "#1001",
+          "serviceName": "Residential Cleaning",
+          "completedDate": "2026-10-01",
+          "customerAmount": 297,
+          "workerEarning": 220
+        },
+        {
+          "bookingId": "#1005",
+          "serviceName": "Kitchen Platform Sanitization",
+          "completedDate": "2026-09-29",
+          "customerAmount": 249,
+          "workerEarning": 185
+        }
+      ]
+    },
+    {
+      "id": "PO-802",
+      "workerId": "WRK-201",
+      "workerName": "Ramesh Kumar",
+      "workerPhone": "+91 94370 12345",
+      "workerEmail": "ramesh.k@indiapl.pro",
+      "workerAvatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=256&q=80",
+      "completedJobs": 24,
+      "totalEarnings": 8900,
+      "alreadyPaid": 5700,
+      "availableBalance": 3200,
+      "requestedAmount": 2400,
+      "requestedDate": "2026-10-02T08:30:00Z",
+      "paymentMethod": "Direct Bank Transfer",
+      "paymentDetails": {
+        "accountNumber": "0281001004567",
+        "ifscCode": "HDFC0001234",
+        "bankName": "HDFC Bank Patia",
+        "accountHolder": "Ramesh Kumar",
+        "upiId": "ramesh.kumar@okhdfcbank"
+      },
+      "status": "Under Review",
+      "reviewedAt": "2026-10-02T11:00:00Z",
+      "reviewedBy": "Super Admin",
+      "breakdown": [
+        {
+          "bookingId": "#0998",
+          "serviceName": "Deep Cleaning 3BHK",
+          "completedDate": "2026-09-28",
+          "customerAmount": 899,
+          "workerEarning": 670
+        },
+        {
+          "bookingId": "#0982",
+          "serviceName": "Bathroom Scrubbing",
+          "completedDate": "2026-09-27",
+          "customerAmount": 299,
+          "workerEarning": 225
+        }
+      ]
+    },
+    {
+      "id": "PO-803",
+      "workerId": "WRK-203",
+      "workerName": "Sunita Jena",
+      "workerPhone": "+91 94372 99001",
+      "workerEmail": "sunita.j@indiapl.pro",
+      "workerAvatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80",
+      "completedJobs": 12,
+      "totalEarnings": 4200,
+      "alreadyPaid": 2800,
+      "availableBalance": 1400,
+      "requestedAmount": 950,
+      "requestedDate": "2026-10-01T15:20:00Z",
+      "paymentMethod": "UPI",
+      "paymentDetails": {
+        "upiId": "sunita.jena@ibl",
+        "bankName": "State Bank of India",
+        "accountNumber": "XXXX-XXXX-5561",
+        "ifscCode": "SBIN0001004",
+        "accountHolder": "Sunita Jena"
+      },
+      "status": "Approved",
+      "reviewedAt": "2026-10-01T16:00:00Z",
+      "reviewedBy": "Super Admin",
+      "breakdown": [
+        {
+          "bookingId": "#0964",
+          "serviceName": "Housekeeping Morning",
+          "completedDate": "2026-09-29",
+          "customerAmount": 399,
+          "workerEarning": 300
+        }
+      ]
+    },
+    {
+      "id": "PO-804",
+      "workerId": "WRK-204",
+      "workerName": "Deepak Mohanty",
+      "workerPhone": "+91 94373 77112",
+      "workerEmail": "deepak.m@indiapl.pro",
+      "workerAvatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80",
+      "completedJobs": 15,
+      "totalEarnings": 5600,
+      "alreadyPaid": 3800,
+      "availableBalance": 1800,
+      "requestedAmount": 1800,
+      "requestedDate": "2026-09-30T12:00:00Z",
+      "paymentMethod": "IMPS",
+      "paymentDetails": {
+        "upiId": "deepak.m@upi",
+        "bankName": "ICICI Bank",
+        "accountNumber": "XXXX-XXXX-7721",
+        "ifscCode": "ICIC0000889",
+        "accountHolder": "Deepak Mohanty"
+      },
+      "status": "Paid",
+      "paidAt": "2026-10-01T09:30:00Z",
+      "transactionRef": "UTR-20261001-9923847",
+      "breakdown": [
+        {
+          "bookingId": "#0950",
+          "serviceName": "Office Carpet Cleaning",
+          "completedDate": "2026-09-26",
+          "customerAmount": 1200,
+          "workerEarning": 900
+        }
+      ]
+    },
+    {
+      "id": "PO-805",
+      "workerId": "WRK-205",
+      "workerName": "Manoj Swain",
+      "workerPhone": "+91 94374 55663",
+      "workerEmail": "manoj.s@indiapl.pro",
+      "workerAvatar": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=256&q=80",
+      "completedJobs": 6,
+      "totalEarnings": 2787,
+      "alreadyPaid": 0,
+      "availableBalance": 2787,
+      "requestedAmount": 2500,
+      "requestedDate": "2026-09-28T14:40:00Z",
+      "paymentMethod": "Direct Bank Transfer",
+      "paymentDetails": {
+        "accountNumber": "0281001009123",
+        "ifscCode": "BARB0BAPUJI",
+        "bankName": "Bank of Baroda",
+        "accountHolder": "Manoj Swain"
+      },
+      "status": "Rejected",
+      "rejectionReason": "Bank account number does not match IFSC code branch. Please update your bank details.",
+      "breakdown": [
+        {
+          "bookingId": "#0940",
+          "serviceName": "Apartment Dusting",
+          "completedDate": "2026-09-25",
+          "customerAmount": 400,
+          "workerEarning": 300
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif_001",
+      "title": "New Booking #1001",
+      "message": "Ananya Pattnaik booked Residential Cleaning at Patia Hub.",
+      "type": "booking",
+      "read": false,
+      "timestamp": "10 minutes ago",
+      "link": "/admin/bookings/#1001"
+    },
+    {
+      "id": "notif_002",
+      "title": "Pro Assigned",
+      "message": "Ramesh Kumar assigned to Booking #1001 (2.3 km away).",
+      "type": "worker",
+      "read": false,
+      "timestamp": "8 minutes ago",
+      "link": "/admin/bookings/#1001"
+    },
+    {
+      "id": "notif_003",
+      "title": "Payout Request Received",
+      "message": "Rahul Kumar submitted payout request for ₹1,200.",
+      "type": "payment",
+      "read": true,
+      "timestamp": "2 hours ago",
+      "link": "/admin/payouts"
+    },
+    {
+      "id": "notif_004",
+      "title": "System Operational",
+      "message": "Haversine GPS matching engine running across all Bhubaneswar hubs.",
+      "type": "system",
+      "read": true,
+      "timestamp": "1 day ago"
+    }
+  ]
+}
