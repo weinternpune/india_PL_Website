@@ -49,9 +49,9 @@ export const AdminWorkersPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-[#0B2038] tracking-tight">Service Professionals (Pros)</h1>
+          <h1 className="text-2xl font-black text-[#0B2038] tracking-tight">Service Professionals (Workers)</h1>
           <p className="text-xs sm:text-sm text-slate-800 font-medium mt-0.5">
-            Manage field workforce, GPS availability states, and pro background verifications across Odisha.
+            Manage field workforce, GPS availability states, and worker background verifications across Odisha.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ export const AdminWorkersPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Tabs (All Pros vs Pending Applications) */}
+      {/* Main Tabs (All Workers vs Pending Applications) */}
       <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Main Tab Toggle */}
@@ -78,7 +78,7 @@ export const AdminWorkersPage: React.FC = () => {
                   : 'text-slate-800 hover:text-[#0B2038]'
               }`}
             >
-              All Pros ({workers.length})
+              All Workers ({workers.length})
             </button>
 
             <button

@@ -399,7 +399,7 @@ export const AdminDashboardHome: React.FC = () => {
                 to="/admin/workers"
                 className="text-xs font-bold text-[#008A8E] hover:text-[#007074]"
               >
-                All Pros →
+                All Workers →
               </Link>
             </div>
             <p className="text-xs font-medium text-slate-700">
@@ -409,7 +409,7 @@ export const AdminDashboardHome: React.FC = () => {
             <div className="space-y-3 mt-4">
               {pendingApplicants.length === 0 ? (
                 <div className="p-6 text-center text-xs font-bold text-slate-700 bg-slate-50 rounded-xl border border-slate-200">
-                  No pending pro applications. All workers verified!
+                  No pending worker applications. All workers verified!
                 </div>
               ) : (
                 pendingApplicants.map((pro) => (
@@ -447,8 +447,8 @@ export const AdminDashboardHome: React.FC = () => {
           {/* Active Workers Summary */}
           <div className="pt-3 border-t border-slate-200">
             <div className="flex items-center justify-between text-xs font-bold text-[#0B2038] mb-2">
-              <span>Active Pros in Fleet</span>
-              <span className="text-[#008A8E]">{activePros.length} Pros</span>
+              <span>Active Workers in Fleet</span>
+              <span className="text-[#008A8E]">{activePros.length} Workers</span>
             </div>
             <div className="flex -space-x-2 overflow-hidden">
               {activePros.slice(0, 6).map((w) => (

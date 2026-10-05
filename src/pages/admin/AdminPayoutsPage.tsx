@@ -353,7 +353,7 @@ export const AdminPayoutsPage: React.FC = () => {
             <thead className="bg-slate-50 border-b border-slate-200 text-[#0B2038] font-bold uppercase tracking-wider">
               <tr>
                 <th className="py-3 px-4">Request ID</th>
-                <th className="py-3 px-4">Worker / Pro</th>
+                <th className="py-3 px-4">Worker</th>
                 <th className="py-3 px-4">Requested Date</th>
                 <th className="py-3 px-4">Completed Jobs</th>
                 <th className="py-3 px-4">Available Balance</th>

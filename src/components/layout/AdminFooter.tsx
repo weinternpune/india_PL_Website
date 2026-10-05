@@ -23,7 +23,7 @@ export const AdminFooter: React.FC = () => {
               Bookings
             </Link>
             <Link to="/admin/workers" className="hover:text-[#009E9B] transition-colors">
-              Pros
+              Workers
             </Link>
             <Link to="/admin/customers" className="hover:text-[#009E9B] transition-colors">
               Customers
@@ -31,8 +31,8 @@ export const AdminFooter: React.FC = () => {
             <Link to="/admin/services" className="hover:text-[#009E9B] transition-colors">
               Services
             </Link>
-            <Link to="/admin/reports" className="hover:text-[#009E9B] transition-colors">
-              Reports
+            <Link to="/admin/payouts" className="hover:text-[#009E9B] transition-colors">
+              Payouts
             </Link>
           </div>
         </div>
